@@ -1,9 +1,20 @@
 <template>
   <div class="com-sider-view">
     <div class="com-sider-view__logo">
-      <p class="com-sider-view__logo-text">ElementUI Admin</p>
+      <p v-if="menuCollapse">
+        <router-link to="/">T</router-link>
+      </p>
+      <p v-else class="com-sider-view__logo-text">
+        <router-link to="/">ElementUI Admin</router-link>
+      </p>
     </div>
-    <el-menu :default-active="menuActive" router class="com-sider-view__menu">
+    <el-menu
+      router
+      :default-active="menuActive"
+      :collapse="screen['screen-xs'] ? false : menuCollapse"
+      :collapse-transition="false"
+      class="com-sider-view__menu"
+    >
       <tree-menu :data="menulist"></tree-menu>
     </el-menu>
   </div>
@@ -22,6 +33,12 @@ export default {
     ...mapState({
       currentRoute(state) {
         return state.currentRoute
+      },
+      menuCollapse(state) {
+        return state.menuCollapse
+      },
+      screen(state) {
+        return state.screen
       }
     }),
     menuActive() {

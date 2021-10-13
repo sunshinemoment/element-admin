@@ -17,7 +17,10 @@ export default {
       if (!meta.hideChildrenInMenu && children?.length) {
         return (
           <el-submenu key={meta.realPath} index={meta.realPath}>
-            <template slot="title">{title}</template>
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span slot="title">{title}</span>
+            </template>
             <tree-menu data={children}></tree-menu>
           </el-submenu>
         )
@@ -28,7 +31,8 @@ export default {
           key={meta.realPath}
           index={meta.realPath}
         >
-          {title}
+          <i class="el-icon-location"></i>
+          <span slot="title">{title}</span>
         </el-menu-item>
       )
     })

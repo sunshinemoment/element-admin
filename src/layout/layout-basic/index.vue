@@ -2,7 +2,10 @@
   <container-query :query="query" v-model="screen">
     <div :class="['layout-basic', screen]">
       <el-container>
-        <el-aside width="256px" class="layout-basic__sider">
+        <el-aside
+          :width="menuCollapse ? '64px' : '256px'"
+          class="layout-basic__sider"
+        >
           <sider-view></sider-view>
         </el-aside>
         <el-main class="layout-basic__content">
@@ -17,6 +20,7 @@
         </el-main>
       </el-container>
       <el-drawer
+        size="256px"
         direction="ltr"
         :visible.sync="drawerVisible"
         :with-header="false"
@@ -30,6 +34,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import { ContainerQuery } from 'vue-container-query'
 import HeaderView from '@/components/header-view'
 import SiderView from '@/components/sider-view'
@@ -68,9 +73,31 @@ export default {
       drawerVisible: false
     }
   },
+  computed: {
+    ...mapState({
+      menuCollapse(state) {
+        return state.menuCollapse
+      }
+    })
+  },
+  watch: {
+    screen(data) {
+      this.$store.commit('screenUpdate', data)
+      // 在小屏幕的时候, menuCollapseUpdate 为 true
+      if (data['screen-xs']) {
+        this.$store.commit('menuCollapseUpdate', true)
+      }
+    },
+    menuCollapse(val) {
+      if (this.screen['screen-xs']) {
+        this.drawerVisible = !val
+      }
+    }
+  },
   methods: {
+    // 关闭抽屉页面 设置 menuCollapseUpdate 为 true
     drawerClosed() {
-      //
+      this.$store.commit('menuCollapseUpdate', true)
     }
   }
 }
@@ -93,5 +120,10 @@ export default {
 .layout-basic__main {
   min-height: calc(100vh - 60px);
   background: #f0f2f5;
+}
+.screen-xs {
+  .layout-basic__sider {
+    display: none;
+  }
 }
 </style>

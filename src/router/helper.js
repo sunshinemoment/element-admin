@@ -1,6 +1,5 @@
 import memoizeOne from 'memoize-one'
 import isEqual from 'lodash/isEqual'
-
 /**
  * 增加路由配置数据的方法
  * 增加的配置有：
