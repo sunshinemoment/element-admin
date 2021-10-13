@@ -2,7 +2,7 @@
   <div class="layout-user">
     <div class="layout-user__container">
       <div class="layout-user__head">
-        <p class="layout-user__title">ElementUI Admin Template</p>
+        <p class="layout-user__title">ElementUI Admin</p>
         <p class="layout-user__desc">A awsome web admin systerm</p>
       </div>
       <div class="layout-user__main">
