@@ -1,0 +1,37 @@
+@import './assets/styles/normalize.scss';
+@import './assets/styles/common.scss';
+@import './assets/styles/icon.scss';
+@import './assets/styles/element-variables-rewrite.scss';
+
+html,
+body,
+#app,
+#root {
+  min-height: 100vh;
+  font-size: 16px;
+  font-family: PingFangSC-Regular, PingFang SC;
+}
+
+.el-dialog {
+  border-radius: 4px;
+}
+
+.el-dialog__header {
+  padding: 16px;
+}
+
+.el-dialog__title {
+  font-weight: 600;
+  font-size: 18px;
+  color: $--color-text-regular;
+}
+
+.el-dialog__body {
+  padding: 16px;
+}
+
+.el-button--small {
+  font-size: 14px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
