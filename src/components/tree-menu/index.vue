@@ -18,7 +18,7 @@ export default {
         return (
           <el-submenu key={meta.realPath} index={meta.realPath}>
             <template slot="title">
-              <i class="el-icon-location"></i>
+              {meta.icon ? <i class={meta.icon}></i> : ''}
               <span slot="title">{title}</span>
             </template>
             <tree-menu data={children}></tree-menu>
@@ -31,7 +31,7 @@ export default {
           key={meta.realPath}
           index={meta.realPath}
         >
-          <i class="el-icon-location"></i>
+          {meta.icon ? <i class={meta.icon}></i> : ''}
           <span slot="title">{title}</span>
         </el-menu-item>
       )

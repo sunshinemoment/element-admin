@@ -14,6 +14,7 @@ const route = {
       name: 'demo',
       component: Demo,
       meta: {
+        icon: 'el-icon-pear',
         name: 'demo'
       }
     }

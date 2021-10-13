@@ -4,7 +4,8 @@ const route = {
   path: 'pro',
   name: 'pro',
   meta: {
-    name: 'pro页'
+    name: 'pro页',
+    icon: 'el-icon-folder-opened'
   },
   component: RouterHolder,
   redirect: '/pro/pro-form',
@@ -22,7 +23,7 @@ const route = {
       path: 'pro-table',
       name: 'pro-table',
       component: () =>
-        import(/* webpackChunkName: "pro" */ '@/views/pro/pro-form'),
+        import(/* webpackChunkName: "pro" */ '@/views/pro/pro-table'),
       meta: {
         name: 'pro-table'
       }
