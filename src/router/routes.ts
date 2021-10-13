@@ -1,7 +1,11 @@
 import { RouteConfig } from 'vue-router'
-import home from './_home'
-import user from './_user'
+import homeRoute from './_home'
+import userRoute from './_user'
+import { formatRoutesByEnhanceMeta } from './helper'
 
-const routes: Array<RouteConfig> = [home, user]
+const routes: Array<RouteConfig> = formatRoutesByEnhanceMeta([
+  homeRoute,
+  userRoute
+])
 
 export default routes

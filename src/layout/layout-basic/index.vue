@@ -79,10 +79,11 @@ export default {
 <style lang="scss" scoped>
 .layout-basic__sider {
   height: 100vh;
-  border-right: 1px solid #f1f1f1;
+  box-shadow: 2px 0 6px rgba(29, 35, 41, 0.05);
 }
 .layout-basic__header {
-  border-bottom: 1px solid #f1f1f1;
+  position: relative;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 }
 .layout-basic__content {
   height: 100vh;
@@ -91,6 +92,6 @@ export default {
 }
 .layout-basic__main {
   min-height: calc(100vh - 60px);
-  background: #f8f8f8;
+  background: #f0f2f5;
 }
 </style>

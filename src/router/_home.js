@@ -1,5 +1,6 @@
 import Home from '@/views/home'
 import Demo from '@/views/demo/index.vue'
+import proRoute from './modules/pro'
 
 const route = {
   path: '/',
@@ -7,6 +8,7 @@ const route = {
   component: Home,
   redirect: '/demo',
   children: [
+    proRoute,
     {
       path: 'demo',
       name: 'demo',
