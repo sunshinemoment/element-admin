@@ -2,7 +2,8 @@
   <div class="com-header-view">
     <div class="com-header-view__left">
       <span @click="menuCollapseToggle" class="com-header-view__triggle">
-        {{ menuCollapse ? 'open' : 'close' }}
+        <i v-if="menuCollapse" class="el-icon-d-arrow-right"></i>
+        <i v-else class="el-icon-d-arrow-left"></i>
       </span>
     </div>
     <div class="com-header-view__right">user</div>
