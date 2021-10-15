@@ -39,6 +39,11 @@ export default {
       return normalizeFields(this.fields)
     }
   },
+  mounted() {
+    if (this.getFormInstance) {
+      this.getFormInstance(this.$refs.formRef)
+    }
+  },
   methods: {
     submit() {
       this.$refs.formRef.validate((valid) => {

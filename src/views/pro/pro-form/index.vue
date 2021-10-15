@@ -1,6 +1,6 @@
 <template>
   <div class="page-pro-form">
-    <pro-form :model="model" :fields="fields"></pro-form>
+    <pro-form :model="model" :fields="fields" @submit="submit"></pro-form>
     <el-button @click="click">click</el-button>
   </div>
 </template>
@@ -9,6 +9,7 @@
 export default {
   data() {
     return {
+      restaurants: [],
       model: {
         name: '',
         aa: 1
@@ -58,7 +59,7 @@ export default {
   },
   methods: {
     click() {
-      console.log(this.model)
+      console.log(this.model, this.formRef)
     },
     querySearch(queryString, cb) {
       var restaurants = this.restaurants
@@ -197,6 +198,9 @@ export default {
     },
     handleSelect(item) {
       console.log(item)
+    },
+    submit() {
+      console.log(this.model)
     }
   }
 }
