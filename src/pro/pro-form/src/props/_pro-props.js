@@ -8,6 +8,8 @@ const props = {
   },
   // 表单域唯一键
   fieldKey: String,
+  // 表单提交重置按钮配置
+  submitter: [Boolean, Object],
   // 父组件获取子组件form实例
   getFormInstance: Function
 }

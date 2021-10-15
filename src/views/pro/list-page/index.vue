@@ -6,6 +6,7 @@
       @submit="submit"
       :columns="columns"
       :fetch="fetch"
+      submitter
     ></list-page>
   </div>
 </template>

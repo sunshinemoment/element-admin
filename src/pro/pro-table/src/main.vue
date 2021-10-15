@@ -58,7 +58,7 @@
       </el-table-column>
     </el-table>
     <el-pagination
-      v-if="newTableProps.data.length"
+      v-if="datapager && newTableProps.data.length"
       v-bind="newPaginationProps"
       @size-change="sizeChange"
       @prev-click="prevChange"
@@ -173,6 +173,7 @@ export default {
 .pro-table {
   background-color: #fff;
   .el-pagination {
+    padding: 10px 0;
     text-align: center;
   }
 }

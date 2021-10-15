@@ -1,6 +1,11 @@
 const props = {
   // 原生表格属性
   tableProps: Object,
+  // datapager 是否分页控件 默认展示分页控件
+  datapager: {
+    type: Boolean,
+    default: true
+  },
   // 原生分页属性
   paginationProps: Object,
   // 表格列属性

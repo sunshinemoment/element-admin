@@ -9,9 +9,17 @@
         <dynamic-element :field="field" :model="model"></dynamic-element>
       </base-form-item>
 
-      <el-form-item>
-        <el-button type="primary" @click="submit">提交</el-button>
-        <el-button @click="reset">重置</el-button>
+      <el-form-item v-if="submitter" v-bind="submitter.props">
+        <el-button
+          type="primary"
+          v-bind="submitter.submitButtonProps"
+          @click="submit"
+        >
+          {{ submitter.submitText || '提交' }}
+        </el-button>
+        <el-button v-bind="submitter.resetButtonProps" @click="reset">
+          {{ submitter.resetText || '重置' }}
+        </el-button>
       </el-form-item>
     </el-form>
   </div>
