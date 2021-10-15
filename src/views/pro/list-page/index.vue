@@ -13,8 +13,8 @@
 <script>
 const mock = function (req) {
   return new Promise((reslove, reject) => {
-    // var c = 1 + 2
-    var c = Math.random() > 0.5
+    var c = 1 + 2
+    // var c = Math.random() > 0.5
     if (c) {
       setTimeout(() => {
         reslove({

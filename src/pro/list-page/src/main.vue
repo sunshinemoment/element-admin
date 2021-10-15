@@ -65,7 +65,7 @@ export default {
       if (this.isFetch) {
         this.$refs.tableRef.fetchData({
           ...model,
-          page: 1
+          currentPage: 1
         })
       }
       this.$emit('formSubmit', model)
@@ -74,7 +74,7 @@ export default {
       if (this.isFetch) {
         this.$refs.tableRef.fetchData({
           ...model,
-          page: 1
+          currentPage: 1
         })
       }
       this.$emit('formReset', model)
@@ -86,7 +86,7 @@ export default {
       const { model } = this.$refs.formRef.newFormProps
       this.fetchData({
         ...model,
-        page: 1
+        currentPage: 1
       })
     }
   }

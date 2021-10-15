@@ -138,6 +138,8 @@ export default {
         .then((res) => {
           this.stateData = res.list
           this.statePagination.total = res.total
+          this.statePagination.currentPage = fetchParams.currentPage
+          this.statePagination.pageSize = fetchParams.pageSize
         })
         .catch((e) => {
           console.log(e)
@@ -147,7 +149,6 @@ export default {
         })
     },
     sizeChange(pageSize) {
-      this.statePagination.pageSize = pageSize
       this.fetchData({ pageSize })
       this.$emit('sizeChange', pageSize)
     },
@@ -158,12 +159,10 @@ export default {
       this.$emit('nextClick', page)
     },
     currentChange(currentPage) {
-      this.statePagination.currentPage = currentPage
       this.fetchData({ currentPage })
       this.$emit('currentChange', currentPage)
     },
     refresh() {
-      this.statePagination.currentPage = 1
       this.fetchData({ currentPage: 1 })
     }
   }
