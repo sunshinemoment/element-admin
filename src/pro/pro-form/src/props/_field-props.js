@@ -12,7 +12,11 @@ const props = {
   formItemProps: Object,
   // element 组件库表单元素原生属性
   attributes: Object,
-  events: Object
+  events: Object,
+  // 子选项 如 select
+  option: String,
+  normalizeOptionAttrs: Function,
+  normalizeOptionSlot: Function
 }
 
 export const propsKeys = Object.keys(props)

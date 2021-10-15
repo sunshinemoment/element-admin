@@ -14,7 +14,12 @@
           v-bind="getOptionAttrs(option)"
         >
           <template v-if="fieldData.normalizeOptionSlot">
-            {{ fieldData.normalizeOptionSlot(option) }}
+            <template v-if="option.render">
+              <custom-render :render="option.render"></custom-render>
+            </template>
+            <template v-else>
+              {{ fieldData.normalizeOptionSlot(option) }}
+            </template>
           </template>
         </component>
       </template>
@@ -23,7 +28,24 @@
 </template>
 
 <script>
+import { normalizeReturnRender } from '../helper'
+const CustomRender = {
+  props: {
+    render: Function
+  },
+  render(h) {
+    if (typeof this.render === 'function') {
+      const content = this.render.call(this, h)
+      return normalizeReturnRender(h, content)
+    }
+    return ''
+  }
+}
+
 export default {
+  components: {
+    CustomRender
+  },
   props: {
     fieldData: Object,
     modelData: Object

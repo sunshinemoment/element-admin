@@ -21,7 +21,8 @@ export default {
             prop: 'name'
           },
           attributes: {
-            fetchSuggestions: this.querySearch.bind(this)
+            fetchSuggestions: this.querySearch.bind(this),
+            placeholder: '123'
           },
           events: {
             select: this.handleSelect.bind(this)
@@ -30,13 +31,17 @@ export default {
         {
           type: 'radio-button-group',
           formItemProps: {
+            label: '2',
             prop: 'aa'
           },
           attributes: {
             options: [
               {
                 label: 1,
-                value: 2
+                value: 2,
+                render() {
+                  return 1
+                }
               },
               {
                 label: 3,
