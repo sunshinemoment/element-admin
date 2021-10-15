@@ -117,9 +117,11 @@ export default {
     }
   },
   mounted() {
-    this.fetchData({
-      currentPage: 1
-    })
+    if (this.initLoad) {
+      this.fetchData({
+        currentPage: 1
+      })
+    }
   },
   methods: {
     fetchData(reqData) {

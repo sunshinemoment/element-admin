@@ -9,7 +9,12 @@ const props = {
     default: () => []
   },
   // 请求函数, 必须是一个返回promise的函数
-  fetch: Function
+  fetch: Function,
+  // 初始化加载
+  initLoad: {
+    type: Boolean,
+    default: true
+  }
 }
 
 export const propsKeys = Object.keys(props)

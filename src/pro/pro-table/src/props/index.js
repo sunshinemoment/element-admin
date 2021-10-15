@@ -1,10 +1,10 @@
-import tableProps from './_table-props'
 import paginationProps from './_pagination-props'
+import tableProps from './_table-props'
 import proProps from './_pro-props'
 
 const props = {
-  ...tableProps,
   ...paginationProps,
+  ...tableProps,
   ...proProps
 }
 

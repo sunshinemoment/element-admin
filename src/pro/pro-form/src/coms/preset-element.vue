@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { normalizeReturnRender } from '../../../helper'
+import { normalizeReturnRender } from '@/pro/helper'
 const CustomRender = {
   props: {
     render: Function

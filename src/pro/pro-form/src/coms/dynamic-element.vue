@@ -1,5 +1,5 @@
 <script>
-import { normalizeReturnRender } from '../../../helper'
+import { normalizeReturnRender } from '@/pro/helper'
 import PresetElement from './preset-element'
 
 export default {

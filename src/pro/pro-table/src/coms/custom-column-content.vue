@@ -1,5 +1,5 @@
 <script>
-import { normalizeReturnRender } from '../../../helper'
+import { normalizeReturnRender } from '@/pro/helper'
 export default {
   name: 'custom-column-content',
   props: {
