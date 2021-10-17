@@ -23,7 +23,7 @@ export function normalizeProTableProps(props) {
 export function normalizeProFormProps(props) {
   const { proFormProps } = props
   return Object.entries(props).reduce((newProFormProps, [k, v]) => {
-    if (proPropsKeys.includes(k)) {
+    if ([...proTablePropsKeys, ...proPropsKeys].includes(k)) {
       return newProFormProps
     }
 
