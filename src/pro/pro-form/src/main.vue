@@ -1,13 +1,50 @@
 <template>
   <div class="pro-form">
     <el-form v-bind="newFormProps" ref="formRef">
-      <base-form-item
-        v-for="(field, i) in newFields"
-        :key="field[fieldKey || 'id'] || i"
-        :formItemProps="field.formItemProps"
+      <!-- groups-layout -->
+      <groups-layout v-if="groups" :groups="fieldsGroups" v-slot="{ group }">
+        <grid-layout
+          v-if="group.layout"
+          :fields="group.fields"
+          :fieldKey="fieldKey"
+          v-slot="{ field }"
+          :layout="group.layout"
+        >
+          <dynamic-element :field="field" :model="model"></dynamic-element>
+        </grid-layout>
+        <base-layout
+          v-else
+          :fields="group.fields"
+          :fieldKey="fieldKey"
+          v-slot="{ field }"
+        >
+          <dynamic-element :field="field" :model="model"></dynamic-element>
+        </base-layout>
+      </groups-layout>
+      <!-- /groups-layout -->
+
+      <!-- grid-layout -->
+      <grid-layout
+        v-else-if="grid"
+        :fields="newFields"
+        :fieldKey="fieldKey"
+        v-slot="{ field }"
+        :layout="layout"
       >
         <dynamic-element :field="field" :model="model"></dynamic-element>
-      </base-form-item>
+      </grid-layout>
+      <!-- /grid-layout -->
+
+      <!-- base-layout -->
+      <base-layout
+        v-else
+        :fields="newFields"
+        :fieldKey="fieldKey"
+        v-slot="{ field }"
+      >
+        <dynamic-element :field="field" :model="model"></dynamic-element>
+      </base-layout>
+      <!-- /base-layout -->
 
       <el-form-item v-if="submitter" v-bind="submitter.props">
         <el-button
@@ -29,13 +66,17 @@
 import props from './props'
 import { normalizeFormProps, normalizeFields } from './helper'
 
-import BaseFormItem from './coms/base-form-item'
+import BaseLayout from './coms/base-layout'
+import GridLayout from './coms/grid-layout'
+import GroupsLayout from './coms/groups-layout'
 import DynamicElement from './coms/dynamic-element'
 
 export default {
   name: 'pro-form',
   components: {
-    BaseFormItem,
+    BaseLayout,
+    GridLayout,
+    GroupsLayout,
     DynamicElement
   },
   props,
@@ -45,6 +86,24 @@ export default {
     },
     newFields() {
       return normalizeFields(this.fields)
+    },
+    fieldsGroups() {
+      const fieldsKeys = this.newFields.map((field) => field.formItemProps.prop)
+      return this.groups.reduce((pre, next) => {
+        // 要排除掉不在fields中的元素
+        const filterContent = (next.content || []).filter((item) =>
+          fieldsKeys.includes(item)
+        )
+        return [
+          ...pre,
+          {
+            ...next,
+            fields: filterContent.map((item) =>
+              this.newFields.find((field) => field.formItemProps.prop === item)
+            )
+          }
+        ]
+      }, [])
     }
   },
   mounted() {
