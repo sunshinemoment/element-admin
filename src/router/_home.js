@@ -1,6 +1,7 @@
 import Home from '@/views/home'
 import Demo from '@/views/demo/index.vue'
 import proRoute from './modules/pro'
+import chartsRoute from './modules/charts'
 
 const route = {
   path: '/',
@@ -9,6 +10,7 @@ const route = {
   redirect: '/demo',
   children: [
     proRoute,
+    chartsRoute,
     {
       path: 'demo',
       name: 'demo',
