@@ -1,111 +1,111 @@
 export default {
   data() {
     return {
-      base_input_restaurants: [],
-      baseForm_model: {
-        base_input: '',
-        base_input_disabled: '',
-        base_input_clearable: '',
-        base_input_password: '',
-        base_input_textarea: '',
-        base_input_textarea_autosize: '',
-        base_input_mini: '',
-        base_input_small: '',
-        base_input_large: '',
-        base_input_autocomplete: ''
+      base_form_input_restaurants: [],
+      base_form_input_model: {
+        base_form_input: '',
+        base_form_input_disabled: '',
+        base_form_input_clearable: '',
+        base_form_input_password: '',
+        base_form_input_textarea: '',
+        base_form_input_textarea_autosize: '',
+        base_form_input_mini: '',
+        base_form_input_small: '',
+        base_form_input_large: '',
+        base_form_input_autocomplete: ''
       },
-      baseForm_fields: [
+      base_form_input_fields: [
         {
           type: 'input',
           formItemProps: {
             label: '输入框',
-            prop: 'base_input'
+            prop: 'base_form_input'
           }
         },
         {
           type: 'input-disabled',
           formItemProps: {
             label: '输入框-禁用状态',
-            prop: 'base_input_disabled'
+            prop: 'base_form_input_disabled'
           }
         },
         {
           type: 'input-clearable',
           formItemProps: {
             label: '输入框-可清空',
-            prop: 'base_input_clearable'
+            prop: 'base_form_input_clearable'
           }
         },
         {
           type: 'password',
           formItemProps: {
             label: '输入框-密码框',
-            prop: 'base_input_password'
+            prop: 'base_form_input_password'
           }
         },
         {
           type: 'textarea',
           formItemProps: {
             label: '输入框-文本域',
-            prop: 'base_input_textarea'
+            prop: 'base_form_input_textarea'
           }
         },
         {
           type: 'textarea-autosize',
           formItemProps: {
             label: '输入框-可自适应文本高度的文本域',
-            prop: 'base_input_textarea_autosize'
+            prop: 'base_form_input_textarea_autosize'
           }
         },
         {
           type: 'input-mini',
           formItemProps: {
             label: '输入框-mini尺寸',
-            prop: 'base_input_mini'
+            prop: 'base_form_input_mini'
           }
         },
         {
           type: 'input-small',
           formItemProps: {
             label: '输入框-small尺寸',
-            prop: 'base_input_small'
+            prop: 'base_form_input_small'
           }
         },
         {
           type: 'input-large',
           formItemProps: {
             label: '输入框-large尺寸',
-            prop: 'base_input_large'
+            prop: 'base_form_input_large'
           }
         },
         {
           type: 'autocomplete',
           formItemProps: {
             label: '输入框-输入建议',
-            prop: 'base_input_autocomplete'
+            prop: 'base_form_input_autocomplete'
           },
           attributes: {
-            fetchSuggestions: this.base_input_querySearch.bind(this)
+            fetchSuggestions: this.base_form_input_querySearch
           },
           events: {
-            select: this.base_input_select.bind(this)
+            select: this.base_form_input_select
           }
         }
       ]
     }
   },
   methods: {
-    base_input_querySearch(queryString, cb) {
-      var base_input_restaurants = this.base_input_restaurants
+    base_form_input_querySearch(queryString, cb) {
+      var base_form_input_restaurants = this.base_form_input_restaurants
       var results = queryString
-        ? base_input_restaurants.filter(
-            this.base_input_createFilterÏ(queryString)
+        ? base_form_input_restaurants.filter(
+            this.base_form_input_createFilterÏ(queryString)
           )
-        : base_input_restaurants
+        : base_form_input_restaurants
       // 调用 callback 返回建议列表的数据
       cb(results)
     },
-    base_input_createFilterÏ(queryString) {
+    base_form_input_createFilterÏ(queryString) {
       return (restaurant) => {
         return (
           restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) ===
@@ -113,7 +113,7 @@ export default {
         )
       }
     },
-    base_input_loadAll() {
+    base_form_input_loadAll() {
       return [
         { value: '三全鲜食（北新泾店）', address: '长宁区新渔路144号' },
         {
@@ -232,11 +232,11 @@ export default {
         }
       ]
     },
-    base_input_select(item) {
+    base_form_input_select(item) {
       console.log(item)
     }
   },
   mounted() {
-    this.base_input_restaurants = this.base_input_loadAll()
+    this.base_form_input_restaurants = this.base_form_input_loadAll()
   }
 }

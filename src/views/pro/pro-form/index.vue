@@ -1,8 +1,8 @@
 <template>
   <div class="page-pro-form">
     <pro-form
-      :model="baseForm_model"
-      :fields="baseForm_fields"
+      :model="base_form_input_model"
+      :fields="base_form_input_fields"
       submitter
       @submit="submit"
     ></pro-form>
@@ -24,11 +24,11 @@
 </template>
 
 <script>
-import baseForm from './_base-form'
+import baseFormInput from './_base-form-input'
 import girdForm from './_gird-form'
 import groupsForm from './_groups-form'
 export default {
-  mixins: [baseForm, girdForm, groupsForm],
+  mixins: [baseFormInput, girdForm, groupsForm],
   methods: {
     submit(data) {
       console.log(data)
