@@ -107,6 +107,7 @@ export default {
 .layout-basic__sider {
   height: 100vh;
   box-shadow: 2px 0 6px rgba(29, 35, 41, 0.05);
+  position: relative;
 }
 .layout-basic__header {
   position: relative;
@@ -119,7 +120,8 @@ export default {
 }
 .layout-basic__main {
   min-height: calc(100vh - 60px);
-  background: #f0f2f5;
+  // background: #f0f2f5;
+  background-color: #fff;
 }
 .screen-xs {
   .layout-basic__sider {

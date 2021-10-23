@@ -12,7 +12,7 @@ const props = {
   submitter: [Boolean, Object],
   // 父组件获取子组件form实例
   getFormInstance: Function,
-  border: Boolean,
+  border: [Boolean, Object],
   groups: Array,
   /**
    *  groups: [
