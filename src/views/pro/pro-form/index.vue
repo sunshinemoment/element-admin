@@ -1,11 +1,30 @@
 <template>
   <div class="page-pro-form">
+    <!-- base_form_input -->
+    <el-divider content-position="left">
+      <h4>Input 输入框</h4>
+    </el-divider>
     <pro-form
       :model="base_form_input_model"
       :fields="base_form_input_fields"
       submitter
       @submit="submit"
     ></pro-form>
+    <br />
+    <!-- /base_form_input -->
+
+    <!-- base_form_radio -->
+    <el-divider content-position="left">
+      <h4>Radio 单选框</h4>
+    </el-divider>
+    <pro-form
+      :model="base_form_radio_model"
+      :fields="base_form_radio_fields"
+      submitter
+      @submit="submit"
+    ></pro-form>
+    <!-- /base_form_radio -->
+
     <pro-form
       :model="girdForm_model"
       :fields="girdForm_fields"
@@ -25,10 +44,11 @@
 
 <script>
 import baseFormInput from './_base-form-input'
+import baseFormRadio from './_base-form-radio'
 import girdForm from './_gird-form'
 import groupsForm from './_groups-form'
 export default {
-  mixins: [baseFormInput, girdForm, groupsForm],
+  mixins: [baseFormInput, baseFormRadio, girdForm, groupsForm],
   methods: {
     submit(data) {
       console.log(data)

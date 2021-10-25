@@ -1,5 +1,8 @@
 module.exports = {
-  publicPath: 'https://sunshinemoment.github.io/element-admin',
+  publicPath:
+    process.env === 'production'
+      ? 'https://sunshinemoment.github.io/element-admin'
+      : '/',
   css: {
     // css预设器配置项
     loaderOptions: {
