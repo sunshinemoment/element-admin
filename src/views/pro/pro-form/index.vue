@@ -23,7 +23,21 @@
       submitter
       @submit="submit"
     ></pro-form>
+    <br />
     <!-- /base_form_radio -->
+
+    <!-- base_form_checkbox -->
+    <el-divider content-position="left">
+      <h4>checkbox 多选框</h4>
+    </el-divider>
+    <pro-form
+      :model="base_form_checkbox_model"
+      :fields="base_form_checkbox_fields"
+      submitter
+      @submit="submit"
+    ></pro-form>
+    <br />
+    <!-- /base_form_checkbox -->
 
     <pro-form
       :model="girdForm_model"
@@ -45,10 +59,17 @@
 <script>
 import baseFormInput from './_base-form-input'
 import baseFormRadio from './_base-form-radio'
+import baseFormCheckbox from './_base-form-checkbox'
 import girdForm from './_gird-form'
 import groupsForm from './_groups-form'
 export default {
-  mixins: [baseFormInput, baseFormRadio, girdForm, groupsForm],
+  mixins: [
+    baseFormInput,
+    baseFormRadio,
+    baseFormCheckbox,
+    girdForm,
+    groupsForm
+  ],
   methods: {
     submit(data) {
       console.log(data)

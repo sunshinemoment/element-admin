@@ -4,19 +4,8 @@ const presetElements = [
     element: 'el-radio'
   },
   {
-    type: 'radio-button',
-    element: 'el-radio-button'
-  },
-  {
     type: 'radio-disabled',
     element: 'el-radio',
-    attrs: {
-      disabled: true
-    }
-  },
-  {
-    type: 'radio-button-disabled',
-    element: 'el-radio-button',
     attrs: {
       disabled: true
     }

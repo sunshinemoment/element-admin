@@ -1,18 +1,18 @@
 export default {
   data() {
     return {
-      base_form_radio_model: {
-        base_form_radio: '',
-        base_form_radio_disabled: '禁用状态',
-        base_form_radio_group: '',
-        base_form_radio_button_group: ''
+      base_form_checkbox_model: {
+        base_form_checkbox: '',
+        base_form_checkbox_disabled: '禁用状态',
+        base_form_checkbox_group: [],
+        base_form_checkbox_button_group: []
       },
-      base_form_radio_fields: [
+      base_form_checkbox_fields: [
         {
-          type: 'radio',
+          type: 'checkbox',
           formItemProps: {
-            label: '单选框',
-            prop: 'base_form_radio'
+            label: '多选框',
+            prop: 'base_form_checkbox'
           },
           attributes: {
             label: 1
@@ -20,20 +20,20 @@ export default {
           children: ['选项一']
         },
         {
-          type: 'radio-disabled',
+          type: 'checkbox-disabled',
           formItemProps: {
-            label: '单选框-禁用状态',
-            prop: 'base_form_radio_disabled'
+            label: '多选框-禁用状态',
+            prop: 'base_form_checkbox_disabled'
           },
           attributes: {
             label: '禁用状态'
           }
         },
         {
-          type: 'radio-group',
+          type: 'checkbox-group',
           formItemProps: {
-            label: '单选框-单选框组',
-            prop: 'base_form_radio_group'
+            label: '多选框-多选框组',
+            prop: 'base_form_checkbox_group'
           },
           children: [
             {
@@ -47,10 +47,10 @@ export default {
           ]
         },
         {
-          type: 'radio-button-group',
+          type: 'checkbox-button-group',
           formItemProps: {
-            label: '单选框-按钮样式',
-            prop: 'base_form_radio_button_group'
+            label: '多选框-按钮样式',
+            prop: 'base_form_checkbox_button_group'
           },
           children: [
             {
