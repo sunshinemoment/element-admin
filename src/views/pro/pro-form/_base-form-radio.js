@@ -15,7 +15,8 @@ export default {
           },
           attributes: {
             label: 1
-          }
+          },
+          children: ['选项一']
         },
         {
           type: 'radio-disabled',
@@ -33,18 +34,16 @@ export default {
             label: '单选框组',
             prop: 'base_form_radio_group'
           },
-          attributes: {
-            options: [
-              {
-                label: '选项一',
-                value: 1
-              },
-              {
-                label: '选项二',
-                value: 2
-              }
-            ]
-          }
+          children: [
+            {
+              label: 1,
+              text: '选项一'
+            },
+            {
+              label: 2,
+              text: '选项二'
+            }
+          ]
         }
       ]
     }

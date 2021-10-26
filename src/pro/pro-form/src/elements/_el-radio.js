@@ -24,28 +24,12 @@ const presetElements = [
   {
     type: 'radio-group',
     element: 'el-radio-group',
-    option: 'el-radio',
-    normalizeOptionAttrs(option) {
-      return {
-        label: option.value
-      }
-    },
-    normalizeOptionSlot(option) {
-      return option.label
-    }
+    childrenElement: 'el-radio'
   },
   {
     type: 'radio-button-group',
     element: 'el-radio-group',
-    option: 'el-radio-button',
-    normalizeOptionAttrs(option) {
-      return {
-        label: option.value
-      }
-    },
-    normalizeOptionSlot(option) {
-      return option.label
-    }
+    childrenElement: 'el-radio-button'
   }
 ]
 

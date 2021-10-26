@@ -5,25 +5,28 @@
     v-bind="fieldData.attributes"
     v-on="fieldData.events"
   >
-    <slot>
-      <template v-if="fieldData.option">
-        <component
-          :is="fieldData.option"
-          v-for="(option, i) in fieldData.attributes.options || []"
-          :key="getOptionKey(option, i)"
-          v-bind="getOptionAttrs(option)"
-        >
-          <template v-if="fieldData.normalizeOptionSlot">
-            <template v-if="option.render">
-              <custom-render :render="option.render"></custom-render>
+    <template v-if="fieldData.children">
+      <template v-for="(child, i) in normalizeChilren(fieldData)">
+        <template v-if="typeof child === 'object'">
+          {{ child.element }}
+          <component
+            :is="child.element"
+            :key="getChildKey(child, i)"
+            v-bind="getChilAttrs(child)"
+          >
+            <template v-if="child.render">
+              <custom-render :render="child.render"></custom-render>
             </template>
             <template v-else>
-              {{ fieldData.normalizeOptionSlot(option) }}
+              {{ child.text }}
             </template>
-          </template>
-        </component>
+          </component>
+        </template>
+        <template v-else>
+          {{ child }}
+        </template>
       </template>
-    </slot>
+    </template>
   </component>
 </template>
 
@@ -51,18 +54,30 @@ export default {
     modelData: Object
   },
   methods: {
-    getOptionKey(option, i) {
-      if (option.key !== undefined) {
-        return option.key
-      }
-      return option.value === undefined ? i : option.value
+    normalizeChilren(fieldData) {
+      const children = fieldData.children
+      return children.map((child) => {
+        if (
+          typeof child === 'object' &&
+          fieldData.childrenElement &&
+          !child.element
+        ) {
+          child.element = fieldData.childrenElement
+          return child
+        }
+
+        return child
+      })
     },
-    getOptionAttrs(option) {
-      const normalizeOptionAttrs = this.fieldData.normalizeOptionAttrs
-      return {
-        ...option,
-        ...(normalizeOptionAttrs ? normalizeOptionAttrs(option) : null)
+    getChildKey(child, i) {
+      if (child.key !== undefined) {
+        return child.key
       }
+      return child.value === undefined ? i : child.value
+    },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    getChilAttrs({ element, render, text, ...rest }) {
+      return rest
     }
   }
 }
