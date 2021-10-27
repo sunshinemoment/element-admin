@@ -8,6 +8,7 @@ import presetSwitch from './_el-switch'
 import presetSlider from './_el-slider'
 import presetTimePicker from './_el-time-picker'
 import presetDatePicker from './_el-date-picker'
+import presetDateTimePicker from './_el-date-time-picker'
 
 export const presetElements = [
   ...presetRadio,
@@ -19,7 +20,8 @@ export const presetElements = [
   ...presetSwitch,
   ...presetSlider,
   ...presetTimePicker,
-  ...presetDatePicker
+  ...presetDatePicker,
+  ...presetDateTimePicker
 ]
 
 export const presetElementsMapByType = presetElements.reduce(
