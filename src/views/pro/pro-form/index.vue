@@ -131,6 +131,19 @@
     ></pro-form>
     <br />
     <!-- /Slider 滑块 -->
+
+    <!-- TimePicker 时间选择器 -->
+    <el-divider content-position="left">
+      <h4>TimePicker 时间选择器</h4>
+    </el-divider>
+    <pro-form
+      :model="base_form_time_picker_model"
+      :fields="base_form_time_picker_fields"
+      submitter
+      @submit="submit"
+    ></pro-form>
+    <br />
+    <!-- /TimePicker 时间选择器 -->
   </div>
 </template>
 
@@ -145,6 +158,7 @@ import baseFormSelect from './_base-form-select'
 import baseFormCascader from './_base-form-cascader'
 import baseFormSwitch from './_base-form-switch'
 import baseFormSlider from './_base-form-slider'
+import baseFormTimePicker from './_base-form-time-picker'
 
 export default {
   mixins: [
@@ -157,7 +171,8 @@ export default {
     baseFormSelect,
     baseFormCascader,
     baseFormSwitch,
-    baseFormSlider
+    baseFormSlider,
+    baseFormTimePicker
   ],
   methods: {
     submit(data) {
