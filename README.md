@@ -1,5 +1,7 @@
 # element 后台管理系统模板
 
+[预览]( https://sunshinemoment.github.io/element-admin/)
+
 ## 运行
 
 ```bash
