@@ -15,7 +15,8 @@ const props = {
   events: Object,
   // [{ element: '', text, ...rest }]
   children: Array,
-  childrenElement: String
+  childrenElement: String,
+  normalizechildrenElement: Function
 }
 
 export const propsKeys = Object.keys(props)

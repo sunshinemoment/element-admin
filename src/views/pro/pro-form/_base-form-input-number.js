@@ -9,7 +9,7 @@ export default {
         base_form_input_number_mini: 1,
         base_form_input_number_right: 1
       },
-      base_form_input_number_ields: [
+      base_form_input_number_fields: [
         {
           type: 'input-number',
           formItemProps: {

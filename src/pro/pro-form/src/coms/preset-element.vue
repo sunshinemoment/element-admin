@@ -8,7 +8,6 @@
     <template v-if="fieldData.children">
       <template v-for="(child, i) in normalizeChilren(fieldData)">
         <template v-if="typeof child === 'object'">
-          {{ child.element }}
           <component
             :is="child.element"
             :key="getChildKey(child, i)"
@@ -54,8 +53,10 @@ export default {
     modelData: Object
   },
   methods: {
+    // 设置统一 child.element
     normalizeChilren(fieldData) {
       const children = fieldData.children
+      const normalizechildrenElement = fieldData.normalizechildrenElement
       return children.map((child) => {
         if (
           typeof child === 'object' &&
@@ -63,6 +64,9 @@ export default {
           !child.element
         ) {
           child.element = fieldData.childrenElement
+          if (normalizechildrenElement) {
+            return normalizechildrenElement(child)
+          }
           return child
         }
 

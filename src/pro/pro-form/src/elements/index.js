@@ -2,12 +2,16 @@ import presetRadio from './_el-radio'
 import presetCheckbox from './_el-checkbox'
 import presetInput from './_el-input'
 import presetInputNumber from './_el-input-number'
+import presetSelect from './_el-select'
+import presetCascader from './_el-cascader'
 
 export const presetElements = [
   ...presetRadio,
   ...presetCheckbox,
   ...presetInput,
-  ...presetInputNumber
+  ...presetInputNumber,
+  ...presetSelect,
+  ...presetCascader
 ]
 
 export const presetElementsMapByType = presetElements.reduce(
