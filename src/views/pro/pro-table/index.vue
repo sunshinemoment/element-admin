@@ -7,14 +7,15 @@
 <script>
 const mock = function (req) {
   return new Promise((reslove, reject) => {
-    // var c = 1 + 2
-    var c = Math.random() > 0.5
+    var c = 1 + 2
+    // var c = Math.random() > 0.5
     if (c) {
       setTimeout(() => {
         reslove({
           list: [...new Array(10)].map((_, index) => ({
-            a: index + 'a-' + req.currentPage + '-' + req.pageSize,
-            b: index + 'b'
+            date: new Date(),
+            name: index + '-name-' + req.currentPage + '-' + req.pageSize,
+            addr: index + '-addr'
           })),
           total: 100
         })
@@ -30,18 +31,16 @@ export default {
     return {
       columns: [
         {
-          label: 'aaa',
-          prop: 'a'
+          label: '日期',
+          prop: 'date'
         },
         {
-          label: 'bbb',
-          prop: 'b'
-        }
-      ],
-      data: [
+          label: '姓名',
+          prop: 'name'
+        },
         {
-          a: '1',
-          b: '2'
+          label: '地址',
+          prop: 'addr'
         }
       ]
     }
