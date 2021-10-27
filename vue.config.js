@@ -1,6 +1,6 @@
 module.exports = {
   publicPath:
-    process.env === 'production'
+    process.env.NODE_ENV === 'production'
       ? 'https://sunshinemoment.github.io/element-admin'
       : '/',
   css: {
