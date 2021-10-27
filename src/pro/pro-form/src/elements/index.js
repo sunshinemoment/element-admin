@@ -4,6 +4,8 @@ import presetInput from './_el-input'
 import presetInputNumber from './_el-input-number'
 import presetSelect from './_el-select'
 import presetCascader from './_el-cascader'
+import presetSwitch from './_el-switch'
+import presetSlider from './_el-slider'
 
 export const presetElements = [
   ...presetRadio,
@@ -11,7 +13,9 @@ export const presetElements = [
   ...presetInput,
   ...presetInputNumber,
   ...presetSelect,
-  ...presetCascader
+  ...presetCascader,
+  ...presetSwitch,
+  ...presetSlider
 ]
 
 export const presetElementsMapByType = presetElements.reduce(

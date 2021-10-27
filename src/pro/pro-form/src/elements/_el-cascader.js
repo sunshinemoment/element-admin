@@ -1,13 +1,11 @@
 const presetElements = [
   {
     type: 'cascader',
-    element: 'el-cascader',
-    childrenElement: 'el-option'
+    element: 'el-cascader'
   },
   {
     type: 'cascader-disabled',
     element: 'el-cascader',
-    childrenElement: 'el-option',
     attrs: {
       disabled: true
     }
@@ -15,7 +13,6 @@ const presetElements = [
   {
     type: 'cascader-clearable',
     element: 'el-cascader',
-    childrenElement: 'el-option',
     attrs: {
       clearable: true
     }
@@ -23,7 +20,6 @@ const presetElements = [
   {
     type: 'cascader-multiple',
     element: 'el-cascader',
-    childrenElement: 'el-option',
     attrs: {
       multiple: true
     }
@@ -31,7 +27,6 @@ const presetElements = [
   {
     type: 'cascader-medium',
     element: 'el-cascader',
-    childrenElement: 'el-option',
     attrs: {
       size: 'medium'
     }
@@ -39,7 +34,6 @@ const presetElements = [
   {
     type: 'cascader-small',
     element: 'el-cascader',
-    childrenElement: 'el-option',
     attrs: {
       size: 'small'
     }
@@ -47,7 +41,6 @@ const presetElements = [
   {
     type: 'cascader-mini',
     element: 'el-cascader',
-    childrenElement: 'el-option',
     attrs: {
       size: 'mini'
     }

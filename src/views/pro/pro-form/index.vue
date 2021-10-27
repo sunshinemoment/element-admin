@@ -105,6 +105,32 @@
     ></pro-form>
     <br />
     <!-- /Cascader 级联选择器 -->
+
+    <!-- Switch 开关 -->
+    <el-divider content-position="left">
+      <h4>Switch 开关</h4>
+    </el-divider>
+    <pro-form
+      :model="base_form_switch_model"
+      :fields="base_form_switch_fields"
+      submitter
+      @submit="submit"
+    ></pro-form>
+    <br />
+    <!-- /Switch 开关 -->
+
+    <!-- Slider 滑块 -->
+    <el-divider content-position="left">
+      <h4>Slider 滑块</h4>
+    </el-divider>
+    <pro-form
+      :model="base_form_slider_model"
+      :fields="base_form_slider_fields"
+      submitter
+      @submit="submit"
+    ></pro-form>
+    <br />
+    <!-- /Slider 滑块 -->
   </div>
 </template>
 
@@ -117,6 +143,8 @@ import baseFormInput from './_base-form-input'
 import baseFormInputNumber from './_base-form-input-number'
 import baseFormSelect from './_base-form-select'
 import baseFormCascader from './_base-form-cascader'
+import baseFormSwitch from './_base-form-switch'
+import baseFormSlider from './_base-form-slider'
 
 export default {
   mixins: [
@@ -127,7 +155,9 @@ export default {
     baseFormInput,
     baseFormInputNumber,
     baseFormSelect,
-    baseFormCascader
+    baseFormCascader,
+    baseFormSwitch,
+    baseFormSlider
   ],
   methods: {
     submit(data) {
