@@ -9,6 +9,9 @@ import presetSlider from './_el-slider'
 import presetTimePicker from './_el-time-picker'
 import presetDatePicker from './_el-date-picker'
 import presetDateTimePicker from './_el-date-time-picker'
+import presetRate from './_el-rate'
+import presetColorPicker from './_el-color-picker'
+import presetTransfer from './_el-transfer'
 
 export const presetElements = [
   ...presetRadio,
@@ -21,7 +24,10 @@ export const presetElements = [
   ...presetSlider,
   ...presetTimePicker,
   ...presetDatePicker,
-  ...presetDateTimePicker
+  ...presetDateTimePicker,
+  ...presetRate,
+  ...presetColorPicker,
+  ...presetTransfer
 ]
 
 export const presetElementsMapByType = presetElements.reduce(

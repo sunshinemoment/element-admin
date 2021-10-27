@@ -170,6 +170,45 @@
     ></pro-form>
     <br />
     <!-- /DateTimePicker 日期时间选择器 -->
+
+    <!-- Rate 评分 -->
+    <el-divider content-position="left">
+      <h4>Rate 评分</h4>
+    </el-divider>
+    <pro-form
+      :model="base_form_rate_model"
+      :fields="base_form_rate_fields"
+      submitter
+      @submit="submit"
+    ></pro-form>
+    <br />
+    <!-- /Rate 评分 -->
+
+    <!-- ColorPicker 颜色选择器 -->
+    <el-divider content-position="left">
+      <h4>ColorPicker 颜色选择器</h4>
+    </el-divider>
+    <pro-form
+      :model="base_form_color_picker_model"
+      :fields="base_form_color_picker_fields"
+      submitter
+      @submit="submit"
+    ></pro-form>
+    <br />
+    <!-- /ColorPicker 颜色选择器 -->
+
+    <!-- Transfer 穿梭框 -->
+    <el-divider content-position="left">
+      <h4>Transfer 穿梭框</h4>
+    </el-divider>
+    <pro-form
+      :model="base_form_transfer_model"
+      :fields="base_form_transfer_fields"
+      submitter
+      @submit="submit"
+    ></pro-form>
+    <br />
+    <!-- /Transfer 穿梭框 -->
   </div>
 </template>
 
@@ -187,6 +226,9 @@ import baseFormSlider from './_base-form-slider'
 import baseFormTimePicker from './_base-form-time-picker'
 import baseFormDatePicker from './_base-form-date-picker'
 import baseFormDateTimePicker from './_base-form-date-time-picker'
+import baseFormRate from './_base-form-rate'
+import baseFormColorPicker from './_base-form-color-picker'
+import baseFormTransfer from './_base-form-transfer'
 
 export default {
   mixins: [
@@ -202,7 +244,10 @@ export default {
     baseFormSlider,
     baseFormTimePicker,
     baseFormDatePicker,
-    baseFormDateTimePicker
+    baseFormDateTimePicker,
+    baseFormRate,
+    baseFormColorPicker,
+    baseFormTransfer
   ],
   methods: {
     submit(data) {
