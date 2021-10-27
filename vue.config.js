@@ -1,7 +1,7 @@
 module.exports = {
   publicPath:
     process.env.NODE_ENV === 'production'
-      ? 'https://sunshinemoment.github.io/element-admin'
+      ? './'
       : '/',
   css: {
     // css预设器配置项
