@@ -1,11 +1,13 @@
-import presetInput from './_el-input'
 import presetRadio from './_el-radio'
 import presetCheckbox from './_el-checkbox'
+import presetInput from './_el-input'
+import presetInputNumber from './_el-input-number'
 
 export const presetElements = [
-  ...presetInput,
   ...presetRadio,
-  ...presetCheckbox
+  ...presetCheckbox,
+  ...presetInput,
+  ...presetInputNumber
 ]
 
 export const presetElementsMapByType = presetElements.reduce(

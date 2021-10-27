@@ -39,6 +39,23 @@
     <br />
     <!-- /base_form_checkbox -->
 
+    <!-- base_form_input_number -->
+    <el-divider content-position="left">
+      <h4>InputNumber 计数器</h4>
+    </el-divider>
+    <pro-form
+      :model="base_form_input_number_model"
+      :fields="base_form_input_number_ields"
+      submitter
+      @submit="submit"
+    ></pro-form>
+    <br />
+    <!-- /base_form_input_number -->
+
+    <!-- girdForm -->
+    <el-divider content-position="left">
+      <h4>栅格表单</h4>
+    </el-divider>
     <pro-form
       :model="girdForm_model"
       :fields="girdForm_fields"
@@ -46,6 +63,13 @@
       submitter
       @submit="submit"
     ></pro-form>
+    <br />
+    <!-- /girdForm -->
+
+    <!-- groupsForm -->
+    <el-divider content-position="left">
+      <h4>分组表单</h4>
+    </el-divider>
     <pro-form
       :model="groupsForm_model"
       :fields="groupsForm_fields"
@@ -53,20 +77,23 @@
       submitter
       @submit="submit"
     ></pro-form>
+    <!-- /groupsForm -->
   </div>
 </template>
 
 <script>
-import baseFormInput from './_base-form-input'
 import baseFormRadio from './_base-form-radio'
 import baseFormCheckbox from './_base-form-checkbox'
+import baseFormInput from './_base-form-input'
+import baseFormInputNumber from './_base-form-input-number'
 import girdForm from './_gird-form'
 import groupsForm from './_groups-form'
 export default {
   mixins: [
-    baseFormInput,
     baseFormRadio,
     baseFormCheckbox,
+    baseFormInput,
+    baseFormInputNumber,
     girdForm,
     groupsForm
   ],
