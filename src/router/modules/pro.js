@@ -36,6 +36,14 @@ const route = {
       meta: {
         name: 'list-page'
       }
+    },
+    {
+      path: 'form-generate',
+      meta: {
+        name: 'form-generate',
+        path: '/form-generate',
+        isNewTab: true
+      }
     }
   ]
 }

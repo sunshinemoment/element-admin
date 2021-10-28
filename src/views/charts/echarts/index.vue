@@ -21,13 +21,13 @@
       ref="worldFlowEchartsRef"
     ></div>
     <!-- /流向世界地图 -->
-    <!-- 百度地图组合 -->
-    <div
+    <!-- 百度地图组合 todo -->
+    <!-- <div
       class="page-echarts__block"
       id="bmap-echarts"
       ref="bmapEchartsRef"
       style="height: 900px;"
-    ></div>
+    ></div> -->
     <!-- /百度地图组合 -->
   </div>
 </template>
@@ -47,7 +47,7 @@ export default {
     this.initBaseLineEcharts()
     this.initWorldEcharts()
     this.initWorldFlowEcharts()
-    this.initBMapEcharts()
+    // this.initBMapEcharts()
   },
   methods: {
     initBaseLineEcharts() {

@@ -25,6 +25,7 @@ export default {
           </el-submenu>
         )
       }
+
       return (
         <el-menu-item
           class="menu-item"

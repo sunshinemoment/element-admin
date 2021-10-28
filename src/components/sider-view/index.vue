@@ -23,7 +23,7 @@
 <script>
 import { mapState } from 'vuex'
 import TreeMenu from '@/components/tree-menu'
-import homeRoute from '@/router/_home'
+import modules from '@/router/modules'
 
 export default {
   components: {
@@ -60,7 +60,7 @@ export default {
   },
   data() {
     return {
-      menulist: homeRoute.children
+      menulist: modules
     }
   }
 }
