@@ -5,7 +5,9 @@
       v-for="(group, i) in groups"
       :key="i"
     >
-      <div class="pro-form__groups-layout__group-title">{{ group.label }}</div>
+      <div v-if="group.label !== undefined" class="pro-form__groups-layout__group-title">
+        {{ group.label }}
+      </div>
       <div class="pro-form__groups-layout__group-content">
         <slot v-bind:group="group"></slot>
       </div>

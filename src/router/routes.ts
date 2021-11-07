@@ -20,7 +20,7 @@ const routes: Array<RouteConfig> = formatRoutesByEnhanceMeta([
     name: '/form-generate',
     component: () =>
       import(
-        /* webpackChunkName: "form-generate" */ '@/views/user/login/index.vue'
+        /* webpackChunkName: "form-generate" */ '@/views/pro/form-generate/index.vue'
       )
   },
   {

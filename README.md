@@ -1,6 +1,6 @@
 # element 后台管理系统模板
 
-[预览]( https://sunshinemoment.github.io/element-admin/)
+[预览](https://sunshinemoment.github.io/element-admin/)
 
 ## 运行
 
@@ -35,3 +35,9 @@ yarn dev
 ├─ README.md                # readme
 └─ vue.config.js            # vue-cli 配置
 ```
+
+## 参考文档
+
+- [Vue.Draggable](https://sortablejs.github.io/Vue.Draggable/#/simple)
+- [vue-draggable配置从入门到精通](https://segmentfault.com/a/1190000021376720)
+- [sortablejs 配置项](http://www.sortablejs.com/options.html)

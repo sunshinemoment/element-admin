@@ -13,12 +13,18 @@ const router = new VueRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
+  // 打开外部链接
   if (to.meta?.isExternal) {
     window.open(to.meta.link)
     return
   }
+  // 新标签打开路由
   if (to.meta?.isNewTab) {
-    window.open(mode === 'hash' ? '/#/' + to.meta.path : to.meta.path)
+    window.open(
+      mode === 'hash'
+        ? location.origin + location.pathname + '#' + to.meta.path
+        : to.meta.path
+    )
     return
   }
   store.commit('currentRouteUpdate', to)

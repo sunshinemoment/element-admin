@@ -46,7 +46,7 @@
       </base-layout>
       <!-- /base-layout -->
 
-      <el-form-item v-if="submitter" v-bind="submitter.props">
+      <el-form-item v-if="fields.length && submitter" v-bind="submitter.props">
         <el-button
           type="primary"
           v-bind="submitter.submitButtonProps"
@@ -69,6 +69,7 @@ import { normalizeFormProps, normalizeFields } from './helper'
 import BaseLayout from './coms/base-layout'
 import GridLayout from './coms/grid-layout'
 import GroupsLayout from './coms/groups-layout'
+// import DynamicLayout from './coms/dynamic-layout'
 import DynamicElement from './coms/dynamic-element'
 
 export default {
@@ -77,6 +78,7 @@ export default {
     BaseLayout,
     GridLayout,
     GroupsLayout,
+    // DynamicLayout,
     DynamicElement
   },
   props,
