@@ -9,12 +9,18 @@
       </div>
       <div class="page-form-generate__block page-form-generate__editor-preview">
         <div class="page-form-generate__block-inner">
-          <editor-preview></editor-preview>
+          <editor-preview
+            :currentField="currentField"
+            @select="selectFieldItem"
+          ></editor-preview>
         </div>
       </div>
-      <div class="page-form-generate__block page-form-generate__editor-props">
+      <div
+        class="page-form-generate__block page-form-generate__editor-props"
+        v-if="currentField"
+      >
         <div class="page-form-generate__block-inner">
-          <editor-props></editor-props>
+          <editor-props :field="currentField"></editor-props>
         </div>
       </div>
     </div>
@@ -31,6 +37,16 @@ export default {
     EditorTools,
     EditorPreview,
     EditorProps
+  },
+  data() {
+    return {
+      currentField: null
+    }
+  },
+  methods: {
+    selectFieldItem(field) {
+      this.currentField = field
+    }
   }
 }
 </script>

@@ -36,20 +36,34 @@
               v-for="field in fields"
               :key="field.formItemProps.prop"
               v-bind="field.formItemProps"
+              :class="[
+                '_editor-preview__draggable-elements-item',
+                {
+                  '_editor-preview__draggable-elements-item--active':
+                    currentField &&
+                    currentField.formItemProps.prop === field.formItemProps.prop
+                }
+              ]"
             >
-              <dynamic-element
-                class="_editor-preview__draggable-elements-item"
-                :field="field"
-                :model="model"
-              ></dynamic-element>
+              <div
+                @click.stop="selectFieldItem(field)"
+                class="_editor-preview__draggable-elements-item-inner"
+              >
+                <dynamic-element
+                  :field="field"
+                  :model="model"
+                ></dynamic-element>
+              </div>
             </el-form-item>
           </draggable>
           <div
             class="_editor-preview__draggable-layout-item-foot"
             v-if="fields.length"
           >
-            <el-button type="primary" @click="submit">提交</el-button>
-            <el-button @click="reset">重置</el-button>
+            <el-button size="small" type="primary" @click="submit">
+              提交
+            </el-button>
+            <el-button size="small" @click="reset">重置</el-button>
           </div>
           <!-- <div class="_editor-preview__draggable__empty-tip">
             please draggable element
@@ -68,10 +82,14 @@
 
 <script>
 import Draggable from 'vuedraggable'
-import { uid } from 'uid'
-import { DynamicElement, helper } from '@/pro/pro-form'
+import { generateDynamicFields } from './helper'
+import { DynamicElement } from '@/pro/pro-form'
+import { toolsMap } from './tools'
 
 export default {
+  props: {
+    currentField: Object
+  },
   components: {
     Draggable,
     DynamicElement
@@ -82,28 +100,6 @@ export default {
       model: {},
       fields: []
     }
-  },
-  computed: {
-    // content() {
-    //   if (this.groups?.[0]?.content) {
-    //     return this.groups[0].content || []
-    //   }
-    //   return []
-    // },
-    // fields() {
-    //   return helper.normalizeFields(
-    //     this.content.map((item) => {
-    //       const id = uid()
-    //       return {
-    //         type: item.type,
-    //         formItemProps: {
-    //           label: item.name + '-' + id,
-    //           prop: id
-    //         }
-    //       }
-    //     })
-    //   )
-    // }
   },
   methods: {
     add() {
@@ -117,7 +113,7 @@ export default {
     },
     layoutDraggableChange(evt) {
       this.groups = [evt.added.element]
-      this.model = []
+      this.model = {}
       this.fields = []
     },
     choose() {
@@ -126,28 +122,16 @@ export default {
     elementDraggableChange() {
       // console.log(2, arguments)
       const content = this.groups?.[0]?.content || []
-      this.fields = helper.normalizeFields(
-        content.map((item) => {
-          console.log(item, 'item')
-          const id = uid()
-          return {
-            type: item.type,
-            formItemProps: {
-              label: item.name + '-' + id,
-              prop: id
-            },
-            attributes: {
-              _self: item
-            }
-          }
-        })
-      )
+      this.fields = generateDynamicFields(content)
       this.model = this.fields.reduce((pre, next) => {
         return {
           ...pre,
-          [next.formItemProps.prop]: next.attributes._self.defaultVal
+          [next.formItemProps.prop]: toolsMap[next.type].initialValue
         }
       }, {})
+    },
+    selectFieldItem(field) {
+      this.$emit('select', field)
     },
     submit() {
       this.$refs.formRef.validate((valid) => {
@@ -202,6 +186,16 @@ export default {
   height: 100%;
   padding: 36px 10px 60px;
   overflow-y: auto;
+  /deep/ .el-form-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    cursor: move;
+    &._editor-preview__draggable-elements-item--active,
+    &:hover {
+      box-shadow: 1px 1px 6px rgba($color: #000000, $alpha: 0.2);
+      transform: translate(-1px, -1px);
+    }
+  }
 }
 ._editor-preview__draggable__empty-tip {
   position: absolute;
@@ -213,7 +207,6 @@ export default {
   text-align: center;
   color: #cccccc;
 }
-
 /deep/ {
   ._editor-preview__draggable-layout-item--ghost {
     width: 100%;

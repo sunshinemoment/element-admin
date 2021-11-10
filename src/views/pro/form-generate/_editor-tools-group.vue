@@ -1,7 +1,7 @@
 <template>
   <div class="_editor-tools-group">
     <div class="_editor-tools-group__head">
-      <h3>{{ data.title }}</h3>
+      <h3>{{ title }}</h3>
     </div>
     <div class="_editor-tools-group__main">
       <draggable
@@ -9,7 +9,7 @@
         ghostClass="_editor-tools-group__item--ghost"
         chosenClass="_editor-tools-group__item--chosen"
         dragClass="_editor-tools-group__item--drag"
-        :list="data.list"
+        :list="tools"
         :group="{ name: groupName, pull: 'clone', put: false }"
         :sort="false"
         :clone="draggableClone"
@@ -25,10 +25,10 @@
       >
         <div
           class="_editor-tools-group__item"
-          v-for="(item, i) in data.list"
+          v-for="(tool, i) in tools"
           :key="i"
         >
-          {{ item.name }}
+          {{ tool.name }}
         </div>
       </draggable>
     </div>
@@ -43,6 +43,8 @@ export default {
     Draggable
   },
   props: {
+    title: String,
+    tools: Array,
     data: Object,
     groupName: String,
     clone: Function

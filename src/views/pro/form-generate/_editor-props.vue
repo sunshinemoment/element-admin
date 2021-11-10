@@ -1,127 +1,50 @@
 <template>
   <div class="_editor-props">
     <pro-form
-      inline
       :model="model"
       :fields="fields"
       :groups="groups"
       submitter
       @submit="submit"
+      size="small"
     ></pro-form>
   </div>
 </template>
 
 <script>
+import {
+  generateDynamicModelByConfig,
+  generateDynamicFieldsByConfig,
+  generateDynamicGroupsByConfig
+} from './helper'
+
 export default {
+  props: {
+    field: Object
+  },
   data() {
     return {
-      model: {
-        input1: '',
-        input2: '',
-        input3: '',
-        input4: '',
-        input5: '',
-        input6: '',
-        input7: '',
-        input8: '',
-        input9: '',
-        input10: ''
-      },
-      fields: [
-        {
-          type: 'input',
-          formItemProps: {
-            label: '属性名',
-            prop: 'input1'
-          }
-        },
-        {
-          type: 'input',
-          formItemProps: {
-            label: '属性键',
-            prop: 'input2'
-          }
-        },
-        {
-          type: 'input',
-          formItemProps: {
-            label: 'Groups选项三',
-            prop: 'input3'
-          }
-        },
-        {
-          type: 'input',
-          formItemProps: {
-            label: 'Groups选项四',
-            prop: 'input4'
-          }
-        },
-        {
-          type: 'input',
-          formItemProps: {
-            label: 'Groups选项五',
-            prop: 'input5'
-          }
-        },
-        {
-          type: 'input',
-          formItemProps: {
-            label: 'Groups选项六',
-            prop: 'input6'
-          }
-        },
-        {
-          type: 'input',
-          formItemProps: {
-            label: 'Groups选项七',
-            prop: 'input7'
-          }
-        },
-        {
-          type: 'input',
-          formItemProps: {
-            label: 'Groups选项八',
-            prop: 'input8'
-          }
-        },
-        {
-          type: 'input',
-          formItemProps: {
-            label: 'Groups选项九',
-            prop: 'input9'
-          }
-        },
-        {
-          type: 'input',
-          formItemProps: {
-            label: 'Groups选项十',
-            prop: 'input10'
-          }
-        }
-      ],
-      groups: [
-        {
-          label: '表单项配置',
-          content: ['input1', 'input2', 'input3']
-        },
-        {
-          label: '组件配置',
-          content: ['input4', 'input5', 'input6']
-        },
-        {
-          label: '事件配置',
-          content: ['input7', 'input8', 'input9', 'input10'],
-          layout: {
-            xs: 24,
-            sm: 12,
-            lg: 8,
-            xl: 6
-          }
-        }
-      ]
+      model: {},
+      fields: [],
+      groups: []
     }
   },
+  watch: {
+    field(val) {
+      const config = val.attributes._config
+      this.setFormConfig(config)
+    }
+  },
+  created() {
+    const config = this.field.attributes._config
+    this.setFormConfig(config)
+  },
   methods: {
+    setFormConfig(config) {
+      this.model = generateDynamicModelByConfig(config)
+      this.fields = generateDynamicFieldsByConfig(config)
+      this.groups = generateDynamicGroupsByConfig(config)
+    },
     submit() {
       console.log(999)
     }

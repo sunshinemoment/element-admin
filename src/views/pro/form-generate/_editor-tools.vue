@@ -1,12 +1,14 @@
 <template>
   <div class="_editor-tools">
     <editor-tools-group
-      :data="layoutTool"
+      title="布局组件"
+      :tools="layoutTools"
       group-name="layout"
       :clone="layoutDraggableClone"
     ></editor-tools-group>
     <editor-tools-group
-      :data="elementTool"
+      title="元素组件"
+      :tools="elementTools"
       group-name="element"
     ></editor-tools-group>
   </div>
@@ -14,9 +16,23 @@
 
 <script>
 import EditorToolsGroup from './_editor-tools-group'
-import layoutTool from './config/layout-tool'
-import elementTool from './config/element-tool'
 import { normalizeToolDataToGroupData } from './helper'
+import elementTools from './tools'
+
+const layoutTools = [
+  {
+    name: '基础布局',
+    type: 'base'
+  },
+  {
+    name: '栅格布局',
+    type: 'gird'
+  },
+  {
+    name: '分组布局',
+    type: 'groups'
+  }
+]
 
 export default {
   components: {
@@ -24,8 +40,8 @@ export default {
   },
   data() {
     return {
-      layoutTool,
-      elementTool
+      layoutTools,
+      elementTools
     }
   },
   methods: {
