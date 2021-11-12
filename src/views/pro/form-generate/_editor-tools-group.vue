@@ -6,9 +6,9 @@
     <div class="_editor-tools-group__main">
       <draggable
         class="_editor-tools-group__draggable"
-        ghostClass="_editor-tools-group__item--ghost"
-        chosenClass="_editor-tools-group__item--chosen"
-        dragClass="_editor-tools-group__item--drag"
+        ghostClass="_editor-tools-group__draggable--ghost"
+        chosenClass="_editor-tools-group__draggable--chosen"
+        dragClass="_editor-tools-group__draggable--drag"
         :list="tools"
         :group="{ name: groupName, pull: 'clone', put: false }"
         :sort="false"

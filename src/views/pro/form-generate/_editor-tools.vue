@@ -10,13 +10,14 @@
       title="元素组件"
       :tools="elementTools"
       group-name="element"
+      :clone="elementDraggableClone"
     ></editor-tools-group>
   </div>
 </template>
 
 <script>
 import EditorToolsGroup from './_editor-tools-group'
-import { normalizeToolDataToGroupData } from './helper'
+import { normalizeToolDataToGroupData, normalizeOriginToField } from './helper'
 import elementTools from './tools'
 
 const layoutTools = [
@@ -47,6 +48,9 @@ export default {
   methods: {
     layoutDraggableClone(original) {
       return normalizeToolDataToGroupData(original)
+    },
+    elementDraggableClone(original) {
+      return normalizeOriginToField(original)
     }
   }
 }

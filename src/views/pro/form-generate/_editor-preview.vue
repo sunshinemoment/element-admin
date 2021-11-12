@@ -3,7 +3,7 @@
     <el-form ref="formRef" :model="model">
       <draggable
         class="_editor-preview__draggable-layout"
-        ghostClass="_editor-preview__draggable-layout-item--ghost"
+        ghostClass="_editor-preview__draggable-layout--ghost"
         :list="groups"
         :sort="false"
         group="layout"
@@ -12,34 +12,37 @@
         @update="update"
         @change="layoutDraggableChange"
         @choose="choose"
-        filter="._editor-preview__draggable-layout-item"
+        filter="._editor-preview__draggable-layout-container"
       >
         <div
-          class="_editor-preview__draggable-layout-item"
+          class="_editor-preview__draggable-layout-container"
           v-for="(group, i) in groups"
           :key="i"
         >
-          <div class="_editor-preview__draggable-layout-item-head">
+          <div class="_editor-preview__draggable-layout-head">
             <h3>{{ group.label }}</h3>
           </div>
           <draggable
             class="
-              _editor-preview__draggable-layout-item-main
+              _editor-preview__draggable-layout-main
               _editor-preview__draggable-elements
             "
-            ghostClass="_editor-preview__draggable-elements-item--ghost"
+            ghostClass="_editor-preview__draggable-elements--ghost"
             :list="group.content"
             group="element"
             @change="elementDraggableChange"
           >
+            <div>
+              <!-- 这里空标签解决第一次拖拽引起排序错乱的bug todo: 待调研 -->
+            </div>
             <el-form-item
-              v-for="field in fields"
-              :key="field.formItemProps.prop"
+              v-for="(field, i) in fields"
+              :key="i"
               v-bind="field.formItemProps"
               :class="[
-                '_editor-preview__draggable-elements-item',
+                '_editor-preview__draggable-item',
                 {
-                  '_editor-preview__draggable-elements-item--active':
+                  '_editor-preview__draggable-item--active':
                     currentField &&
                     currentField.formItemProps.prop === field.formItemProps.prop
                 }
@@ -47,7 +50,7 @@
             >
               <div
                 @click.stop="selectFieldItem(field)"
-                class="_editor-preview__draggable-elements-item-inner"
+                class="_editor-preview__draggable-item-inner"
               >
                 <dynamic-element
                   :field="field"
@@ -57,7 +60,7 @@
             </el-form-item>
           </draggable>
           <div
-            class="_editor-preview__draggable-layout-item-foot"
+            class="_editor-preview__draggable-layout-foot"
             v-if="fields.length"
           >
             <el-button size="small" type="primary" @click="submit">
@@ -82,7 +85,6 @@
 
 <script>
 import Draggable from 'vuedraggable'
-import { generateDynamicFields } from './helper'
 import { DynamicElement } from '@/pro/pro-form'
 import { toolsMap } from './tools'
 
@@ -103,13 +105,13 @@ export default {
   },
   methods: {
     add() {
-      // console.log('add', 2, arguments)
+      console.log('add', 2, arguments)
     },
     end() {
-      // console.log('end', 2, arguments)
+      console.log('end', 2, arguments)
     },
     update() {
-      // console.log('update', 2, arguments)
+      console.log('update', 2, arguments)
     },
     layoutDraggableChange(evt) {
       this.groups = [evt.added.element]
@@ -122,13 +124,15 @@ export default {
     elementDraggableChange() {
       // console.log(2, arguments)
       const content = this.groups?.[0]?.content || []
-      this.fields = generateDynamicFields(content)
-      this.model = this.fields.reduce((pre, next) => {
+      console.log(content, 'content')
+      this.fields = content
+      this.model = content.reduce((pre, next) => {
         return {
           ...pre,
           [next.formItemProps.prop]: toolsMap[next.type].initialValue
         }
       }, {})
+      this.$forceUpdate()
     },
     selectFieldItem(field) {
       this.$emit('select', field)
@@ -155,11 +159,11 @@ export default {
   height: 100%;
   position: relative;
 }
-._editor-preview__draggable-layout-item {
+._editor-preview__draggable-layout-container {
   height: 100%;
   position: relative;
 }
-._editor-preview__draggable-layout-item-head {
+._editor-preview__draggable-layout-head {
   position: absolute;
   z-index: 1;
   top: 0;
@@ -172,7 +176,7 @@ export default {
     font-size: 14px;
   }
 }
-._editor-preview__draggable-layout-item-foot {
+._editor-preview__draggable-layout-foot {
   position: absolute;
   z-index: 1;
   bottom: 0;
@@ -190,10 +194,12 @@ export default {
     margin-bottom: 10px;
     padding: 10px;
     cursor: move;
-    &._editor-preview__draggable-elements-item--active,
+    &._editor-preview__draggable-item--active {
+      border: 1px dashed #409eff;
+    }
     &:hover {
-      box-shadow: 1px 1px 6px rgba($color: #000000, $alpha: 0.2);
-      transform: translate(-1px, -1px);
+      box-shadow: 1px 1px 3px rgba($color: #000000, $alpha: 0.2);
+      transform: translate(1px, 1px);
     }
   }
 }
@@ -208,7 +214,7 @@ export default {
   color: #cccccc;
 }
 /deep/ {
-  ._editor-preview__draggable-layout-item--ghost {
+  ._editor-preview__draggable-layout--ghost {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -219,7 +225,7 @@ export default {
     align-items: center;
     margin: 0;
   }
-  ._editor-preview__draggable-elements-item--ghost {
+  ._editor-preview__draggable-elements--ghost {
     width: 100%;
     margin: 0;
   }

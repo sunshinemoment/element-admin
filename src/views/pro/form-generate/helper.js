@@ -13,78 +13,120 @@ export function normalizeToolDataToGroupData(data) {
   }
 }
 
-export function generateDynamicFields(content) {
-  return helper.normalizeFields(
-    content.map((item) => {
-      const id = uid()
-      return {
-        type: item.type,
-        formItemProps: {
-          label: '_' + item.name + '_' + id,
-          prop: '_' + id
-        },
-        attributes: {
-          _config: item.config
+export function normalizeOriginToField(origin) {
+  const id = uid()
+  const field = {
+    type: origin.type
+  }
+
+  field.formItemProps = origin.formItemPropsConfig.content.reduce(
+    (pre, next) => {
+      const key = '_formItemProps_' + next.key
+      if (next.value === '') {
+        return {
+          ...pre,
+          [key]: '_' + next.key + '_' + id
         }
       }
-    })
+      return {
+        ...pre,
+        [key]: next.value
+      }
+    },
+    {}
   )
+
+  field.attributes = origin.attributesConfig.content.reduce(
+    (pre, next) => {
+      const key = '_attributes_' + next.key
+      if (next.value === '') {
+        return {
+          ...pre,
+          [key]: '_' + next.key + '_' + id
+        }
+      }
+      return {
+        ...pre,
+        [key]: next.value
+      }
+    },
+    {
+      _config: origin
+    }
+  )
+
+  if (origin.childrenConfig) {
+    if (origin.childrenConfig.childType === 'string') {
+      field.children = origin.childrenConfig.content.reduce((pre, next) => {
+        return [...pre, next.value === '' ? next.name : next.value]
+      }, [])
+    }
+  }
+
+  return helper.normalizeElement(helper.normalizeField(field))
 }
 
-export function generateDynamicModelByConfig(config) {
-  return config.reduce((pre, next) => {
-    const model = {
+export function generateDynamicModelByfieldConfig(fieldConfig) {
+  const originalConfig = fieldConfig.attributes._config
+  return originalConfig.formItemPropsConfig.content.reduce((pre, next) => {
+    return {
       ...pre,
-      ...(next.list || []).reduce((innerPre, innerNext) => {
-        return {
-          ...innerPre,
-          ['_' + next.type + '_' + innerNext.key]: innerNext.value
-        }
-      }, {})
+      ['_formItemProps_' + next.key]:
+        fieldConfig.formItemProps['_formItemProps_' + next.key]
     }
-
-    if (next.type === 'children') {
-      if (next.option) {
-        model.children = [next.option.value]
-      } else if (next.type === 'group') {
-        //
-      }
-    }
-
-    return model
   }, {})
 }
 
-export function generateDynamicFieldsByConfig(config) {
-  return config.reduce((pre, next) => {
-    return [
-      ...pre,
-      ...(next.list || []).reduce((innerPre, innerNext) => {
-        return [
-          ...innerPre,
-          {
-            type: innerNext.element,
-            formItemProps: {
-              label: innerNext.name,
-              prop: '_' + next.type + '_' + innerNext.key
-            }
+export function generateDynamiFieldsByfieldConfig(fieldConfig) {
+  const originalConfig = fieldConfig.attributes._config
+  const formItemPropsFields = originalConfig.formItemPropsConfig.content.reduce(
+    (pre, next) => {
+      return [
+        ...pre,
+        {
+          type: next.element,
+          formItemProps: {
+            label: next.name,
+            prop: '_formItemProps_' + next.key
           }
-        ]
-      }, [])
-    ]
-  }, [])
+        }
+      ]
+    },
+    []
+  )
+  const attributesFields = originalConfig.attributesConfig.content.reduce(
+    (pre, next) => {
+      return [
+        ...pre,
+        {
+          type: next.element,
+          formItemProps: {
+            label: next.name,
+            prop: '_attributes_' + next.key
+          }
+        }
+      ]
+    },
+    []
+  )
+
+  return [...formItemPropsFields, ...attributesFields]
 }
 
-export function generateDynamicGroupsByConfig(config) {
-  return config.reduce((pre, next) => {
-    return [
-      ...pre,
-      {
-        label: next.name,
-        content: (next.list || []).reduce((innerPre, innerNext) => {
-          return [...innerPre, '_' + next.type + '_' + innerNext.key]
-        }, [])
-      }
-    ]
-  }, [])
+export function generateDynamicGroupsByfieldConfig(fieldConfig) {
+  const originalConfig = fieldConfig.attributes._config
+  return [
+    {
+      label: originalConfig.formItemPropsConfig.name,
+      content: originalConfig.formItemPropsConfig.content.map(
+        (item) => '_formItemProps_' + item.key
+      )
+    },
+    {
+      label: originalConfig.attributesConfig.name,
+      content: originalConfig.attributesConfig.content.map(
+        (item) => '_attributes_' + item.key
+      )
+    }
+  ]
 }

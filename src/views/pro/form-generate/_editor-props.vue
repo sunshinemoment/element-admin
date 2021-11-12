@@ -13,9 +13,9 @@
 
 <script>
 import {
-  generateDynamicModelByConfig,
-  generateDynamicFieldsByConfig,
-  generateDynamicGroupsByConfig
+  generateDynamicModelByfieldConfig,
+  generateDynamiFieldsByfieldConfig,
+  generateDynamicGroupsByfieldConfig
 } from './helper'
 
 export default {
@@ -31,19 +31,18 @@ export default {
   },
   watch: {
     field(val) {
-      const config = val.attributes._config
-      this.setFormConfig(config)
+      this.setFormConfig(val)
     }
   },
   created() {
-    const config = this.field.attributes._config
-    this.setFormConfig(config)
+    this.setFormConfig(this.field)
   },
   methods: {
     setFormConfig(config) {
-      this.model = generateDynamicModelByConfig(config)
-      this.fields = generateDynamicFieldsByConfig(config)
-      this.groups = generateDynamicGroupsByConfig(config)
+      this.model = generateDynamicModelByfieldConfig(config)
+      this.fields = generateDynamiFieldsByfieldConfig(config)
+      this.groups = generateDynamicGroupsByfieldConfig(config)
+      console.log(this.fields, 123)
     },
     submit() {
       console.log(999)
