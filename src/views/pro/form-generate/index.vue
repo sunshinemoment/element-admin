@@ -11,6 +11,7 @@
         <div class="page-form-generate__block-inner">
           <editor-preview
             :currentField="currentField"
+            :currentConfigModel="currentConfigModel"
             @select="selectFieldItem"
           ></editor-preview>
         </div>
@@ -20,7 +21,10 @@
         v-if="currentField"
       >
         <div class="page-form-generate__block-inner">
-          <editor-props :field="currentField"></editor-props>
+          <editor-props
+            :field="currentField"
+            @change="configChange"
+          ></editor-props>
         </div>
       </div>
     </div>
@@ -40,12 +44,16 @@ export default {
   },
   data() {
     return {
-      currentField: null
+      currentField: null,
+      currentConfigModel: {}
     }
   },
   methods: {
     selectFieldItem(field) {
       this.currentField = field
+    },
+    configChange(val) {
+      console.log(val)
     }
   }
 }

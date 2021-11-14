@@ -19,18 +19,23 @@ export function normalizeOriginToField(origin) {
     type: origin.type
   }
 
+  origin.formItemPropsConfig.content.forEach((item) => {
+    if (item.value === '') {
+      item.value = '_' + item.key + '_' + id
+    }
+  })
+
+  origin.attributesConfig.content.forEach((item) => {
+    if (item.value === '') {
+      item.value = '_' + item.key + '_' + id
+    }
+  })
+
   field.formItemProps = origin.formItemPropsConfig.content.reduce(
     (pre, next) => {
-      const key = '_formItemProps_' + next.key
-      if (next.value === '') {
-        return {
-          ...pre,
-          [key]: '_' + next.key + '_' + id
-        }
-      }
       return {
         ...pre,
-        [key]: next.value
+        [next.key]: next.value
       }
     },
     {}
@@ -38,16 +43,9 @@ export function normalizeOriginToField(origin) {
 
   field.attributes = origin.attributesConfig.content.reduce(
     (pre, next) => {
-      const key = '_attributes_' + next.key
-      if (next.value === '') {
-        return {
-          ...pre,
-          [key]: '_' + next.key + '_' + id
-        }
-      }
       return {
         ...pre,
-        [key]: next.value
+        [next.key]: next.value
       }
     },
     {
@@ -68,13 +66,25 @@ export function normalizeOriginToField(origin) {
 
 export function generateDynamicModelByfieldConfig(fieldConfig) {
   const originalConfig = fieldConfig.attributes._config
-  return originalConfig.formItemPropsConfig.content.reduce((pre, next) => {
-    return {
-      ...pre,
-      ['_formItemProps_' + next.key]:
-        fieldConfig.formItemProps['_formItemProps_' + next.key]
-    }
-  }, {})
+
+  const formItemPropsFieldsModel =
+    originalConfig.formItemPropsConfig.content.reduce((pre, next) => {
+      return {
+        ...pre,
+        ['_formItemProps_' + next.key]: next.value
+      }
+    }, {})
+  const attributesFieldsModel =
+    originalConfig.formItemPropsConfig.content.reduce((pre, next) => {
+      return {
+        ...pre,
+        ['_attributes_' + next.key]: next.value
+      }
+    }, {})
+  return {
+    ...formItemPropsFieldsModel,
+    ...attributesFieldsModel
+  }
 }
 
 export function generateDynamiFieldsByfieldConfig(fieldConfig) {

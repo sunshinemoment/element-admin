@@ -57,10 +57,10 @@ export default {
       return original
     },
     start() {
-      // console.log('start', 1, arguments)
+      console.log('start', 1, arguments)
     },
     add() {
-      // console.log('add', 1, arguments)
+      console.log('add', 1, arguments)
     },
     remove() {
       // console.log('remove', 1, arguments)

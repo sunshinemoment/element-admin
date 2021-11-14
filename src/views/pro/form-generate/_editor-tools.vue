@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import cloneDeep from 'lodash/cloneDeep'
 import EditorToolsGroup from './_editor-tools-group'
 import { normalizeToolDataToGroupData, normalizeOriginToField } from './helper'
 import elementTools from './tools'
@@ -50,7 +51,7 @@ export default {
       return normalizeToolDataToGroupData(original)
     },
     elementDraggableClone(original) {
-      return normalizeOriginToField(original)
+      return normalizeOriginToField(cloneDeep(original))
     }
   }
 }

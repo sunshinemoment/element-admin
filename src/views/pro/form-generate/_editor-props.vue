@@ -1,6 +1,7 @@
 <template>
   <div class="_editor-props">
     <pro-form
+      ref="formRef"
       :model="model"
       :fields="fields"
       :groups="groups"
@@ -32,6 +33,13 @@ export default {
   watch: {
     field(val) {
       this.setFormConfig(val)
+    },
+    model: {
+      handler(val, preVal) {
+        this.$emit('change', val)
+        console.log(val, preVal)
+      },
+      deep: true
     }
   },
   created() {
@@ -42,10 +50,9 @@ export default {
       this.model = generateDynamicModelByfieldConfig(config)
       this.fields = generateDynamiFieldsByfieldConfig(config)
       this.groups = generateDynamicGroupsByfieldConfig(config)
-      console.log(this.fields, 123)
     },
-    submit() {
-      console.log(999)
+    submit(val) {
+      console.log(val)
     }
   }
 }

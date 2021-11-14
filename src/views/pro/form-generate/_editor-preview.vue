@@ -90,7 +90,8 @@ import { toolsMap } from './tools'
 
 export default {
   props: {
-    currentField: Object
+    currentField: Object,
+    currentConfigModel: Object
   },
   components: {
     Draggable,
@@ -101,6 +102,11 @@ export default {
       groups: [],
       model: {},
       fields: []
+    }
+  },
+  watch: {
+    currentConfigModel(val) {
+      // if ()
     }
   },
   methods: {
@@ -124,15 +130,16 @@ export default {
     elementDraggableChange() {
       // console.log(2, arguments)
       const content = this.groups?.[0]?.content || []
-      console.log(content, 'content')
-      this.fields = content
-      this.model = content.reduce((pre, next) => {
+      this.fields = content.filter((item) => item)
+      this.model = this.fields.reduce((pre, next) => {
         return {
           ...pre,
-          [next.formItemProps.prop]: toolsMap[next.type].initialValue
+          [next.formItemProps.prop]:
+            this.model[next.formItemProps.prop] === undefined
+              ? toolsMap[next.type].initialValue
+              : this.model[next.formItemProps.prop]
         }
       }, {})
-      this.$forceUpdate()
     },
     selectFieldItem(field) {
       this.$emit('select', field)
@@ -194,12 +201,12 @@ export default {
     margin-bottom: 10px;
     padding: 10px;
     cursor: move;
+    border: 1px dashed transparent;
     &._editor-preview__draggable-item--active {
-      border: 1px dashed #409eff;
+      border: 1px solid #409eff;
     }
     &:hover {
-      box-shadow: 1px 1px 3px rgba($color: #000000, $alpha: 0.2);
-      transform: translate(1px, 1px);
+      border: 1px dashed #409eff;
     }
   }
 }
