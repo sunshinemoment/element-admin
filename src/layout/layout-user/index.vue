@@ -20,7 +20,7 @@
             <a href="javascript: viod(0)">条款</a>
           </li>
         </ul>
-        <p class="layout-user__copyright">Copyright &copy; 2018 vueComponent</p>
+        <p class="layout-user__copyright">Copyright &copy; 2021 biansaijun</p>
       </div>
     </div>
   </div>

@@ -1,5 +1,6 @@
 <template>
   <div class="_editor-props">
+    <h3>当前 {{ field.formItemProps.id }} 配置</h3>
     <pro-form
       ref="formRef"
       :model="model"
@@ -31,19 +32,20 @@ export default {
     }
   },
   watch: {
-    field(val) {
-      this.setFormConfig(val)
+    field: {
+      handler(val) {
+        this.setFormConfig(val)
+      },
+      immediate: true
     },
     model: {
-      handler(val, preVal) {
-        this.$emit('change', val)
-        console.log(val, preVal)
+      handler(val, oldVal) {
+        if (val === oldVal) {
+          this.$emit('change', val)
+        }
       },
       deep: true
     }
-  },
-  created() {
-    this.setFormConfig(this.field)
   },
   methods: {
     setFormConfig(config) {

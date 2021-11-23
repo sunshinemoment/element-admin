@@ -13,6 +13,7 @@
             :currentField="currentField"
             :currentConfigModel="currentConfigModel"
             @select="selectFieldItem"
+            @layoutDraggableChange="layoutDraggableChange"
           ></editor-preview>
         </div>
       </div>
@@ -52,8 +53,11 @@ export default {
     selectFieldItem(field) {
       this.currentField = field
     },
-    configChange(val) {
-      console.log(val)
+    layoutDraggableChange() {
+      this.currentField = null
+    },
+    configChange(config) {
+      this.currentConfigModel = config
     }
   }
 }
