@@ -108,8 +108,7 @@ export default {
   watch: {
     currentConfigModel: {
       handler(val) {
-        this.changeModel(val)
-        this.changeFields(val)
+        this.changeFormConfig(val)
       },
       deep: true
     }
@@ -149,22 +148,24 @@ export default {
     selectFieldItem(field) {
       this.$emit('select', field)
     },
-    changeModel(config) {
-      if (config._formItemProps_prop in this.model) {
-        return
-      }
-      const formItemProps = this.currentField.formItemProps
-      this.model[config._formItemProps_prop] = this.model[formItemProps.prop]
-      delete this.model[formItemProps.prop]
-      this.model = { ...this.model }
-    },
-    changeFields(config) {
+    changeFormConfig(config) {
       const content = this.groups[0].content || []
       const currentField = generateFieldByPropsConfig(config, this.currentField)
       const currentIndex = content.findIndex(
         (field) => field === currentField.formItemProps.id
       )
       content.splice(currentIndex, 1, currentField)
+      this.groups[0].content = [...content]
+      this.model = content.reduce((pre, next) => {
+        console.log(this.model[next.formItemProps.prop], this.model, next.formItemProps.prop)
+        return {
+          ...pre,
+          [next.formItemProps.prop]:
+            this.model[next.formItemProps.prop] === undefined
+              ? toolsMap[next.type].initialValue
+              : this.model[next.formItemProps.prop]
+        }
+      }, {})
       this.$emit('select', currentField)
     },
     submit() {
