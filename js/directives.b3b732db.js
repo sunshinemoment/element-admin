@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["directives"],{"8c66":function(e,t,c){"use strict";c.r(t);var n=function(){var e=this,t=e.$createElement,c=e._self._c||t;return c("div",{staticClass:"page-copy"},[e._v(" copy ")])},s=[],a=c("2877"),i={},l=Object(a["a"])(i,n,s,!1,null,null,null);t["default"]=l.exports}}]);
+//# sourceMappingURL=directives.b3b732db.js.map
