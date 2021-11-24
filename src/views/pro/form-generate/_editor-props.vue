@@ -3,6 +3,7 @@
     <h3>当前 {{ field.formItemProps.id }} 配置</h3>
     <pro-form
       ref="formRef"
+      :key="field.formItemProps.id"
       :model="model"
       :fields="fields"
       :groups="groups"

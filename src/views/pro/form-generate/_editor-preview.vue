@@ -1,6 +1,6 @@
 <template>
   <div class="_editor-preview">
-    <el-form ref="formRef" :model="model">
+    <el-form ref="formRef" :model="model" :key="modelLength">
       <draggable
         class="_editor-preview__draggable-layout"
         ghostClass="_editor-preview__draggable-layout--ghost"
@@ -32,33 +32,36 @@
             group="element"
             @change="elementDraggableChange"
           >
-            <div
-              v-for="(field, i) in group.content"
-              :key="i"
-              :class="[
-                '_editor-preview__draggable-item',
-                {
-                  '_editor-preview__draggable-item--active':
-                    currentField &&
-                    currentField.formItemProps.prop === field.formItemProps.prop
-                }
-              ]"
-            >
-              <b class="_editor-preview__draggable-item-ident">
-                {{ field.formItemProps.id }}
-              </b>
-              <el-form-item v-bind="field.formItemProps">
-                <div
-                  @click.stop="selectFieldItem(field)"
-                  class="_editor-preview__draggable-item-inner"
-                >
-                  <dynamic-element
-                    :field="field"
-                    :model="model"
-                  ></dynamic-element>
-                </div>
-              </el-form-item>
-            </div>
+            <template v-if="modelLength">
+              <div
+                v-for="field in group.content"
+                :key="field.formItemProps.id"
+                :class="[
+                  '_editor-preview__draggable-item',
+                  {
+                    '_editor-preview__draggable-item--active':
+                      currentField &&
+                      currentField.formItemProps.prop ===
+                        field.formItemProps.prop
+                  }
+                ]"
+              >
+                <b class="_editor-preview__draggable-item-ident">
+                  {{ field.formItemProps.id }}
+                </b>
+                <el-form-item v-bind="field.formItemProps">
+                  <div
+                    @click.stop="selectFieldItem(field)"
+                    class="_editor-preview__draggable-item-inner"
+                  >
+                    <dynamic-element
+                      :field="field"
+                      :model="model"
+                    ></dynamic-element>
+                  </div>
+                </el-form-item>
+              </div>
+            </template>
           </draggable>
           <div
             class="_editor-preview__draggable-layout-foot"
@@ -105,6 +108,11 @@ export default {
       model: {}
     }
   },
+  computed: {
+    modelLength() {
+      return Object.keys(this.model).length
+    }
+  },
   watch: {
     currentConfigModel: {
       handler(val) {
@@ -143,29 +151,31 @@ export default {
               : this.model[next.formItemProps.prop]
         }
       }, {})
-      // console.log(this.model, 'this.model')
     },
     selectFieldItem(field) {
+      if (this.currentField === field) {
+        return
+      }
       this.$emit('select', field)
     },
     changeFormConfig(config) {
       const content = this.groups[0].content || []
       const currentField = generateFieldByPropsConfig(config, this.currentField)
       const currentIndex = content.findIndex(
-        (field) => field === currentField.formItemProps.id
+        (field) => field.formItemProps.id === currentField.formItemProps.id
       )
       content.splice(currentIndex, 1, currentField)
       this.groups[0].content = [...content]
       this.model = content.reduce((pre, next) => {
-        console.log(this.model[next.formItemProps.prop], this.model, next.formItemProps.prop)
         return {
           ...pre,
           [next.formItemProps.prop]:
             this.model[next.formItemProps.prop] === undefined
-              ? toolsMap[next.type].initialValue
+              ? this.model[this.currentField.formItemProps.prop]
               : this.model[next.formItemProps.prop]
         }
       }, {})
+      console.log(this.model, 'this.model')
       this.$emit('select', currentField)
     },
     submit() {
@@ -241,6 +251,7 @@ export default {
   border: 1px dashed transparent;
   cursor: move;
   margin-bottom: 10px;
+  border: 1px dashed #ccc;
   &:hover {
     border: 1px dashed #409eff;
   }
