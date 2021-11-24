@@ -72,9 +72,12 @@
             </el-button>
             <el-button size="small" @click="reset">重置</el-button>
           </div>
-          <!-- <div class="_editor-preview__draggable__empty-tip">
+          <div
+            class="_editor-preview__draggable__empty-tip"
+            v-if="!groups[0].content.length"
+          >
             please draggable element
-          </div> -->
+          </div>
         </div>
         <div
           class="_editor-preview__draggable__empty-tip"
