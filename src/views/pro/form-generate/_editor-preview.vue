@@ -234,7 +234,7 @@ export default {
   height: 100%;
   padding: 36px 10px 60px;
   overflow-y: auto;
-  /deep/ .el-form-item {
+  ::v-deep .el-form-item {
     margin-bottom: 0;
     padding: 10px;
   }
@@ -269,7 +269,7 @@ export default {
   font-size: 12px;
   color: #666;
 }
-/deep/ {
+::v-deep {
   ._editor-preview__draggable-layout--ghost {
     width: 100%;
     height: 100%;

@@ -142,7 +142,7 @@ export default {
           this.statePagination.pageSize = fetchParams.pageSize
         })
         .catch((e) => {
-          console.log(e)
+          console.log(e, 'err in fetchData of pro-table')
         })
         .finally(() => {
           this.stateLoading = false

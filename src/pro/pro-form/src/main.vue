@@ -10,7 +10,11 @@
           v-slot="{ field }"
           :layout="group.layout"
         >
-          <dynamic-element :field="field" :model="model"></dynamic-element>
+          <dynamic-element
+            :field="field"
+            :model="model"
+            :readonly="readonly"
+          ></dynamic-element>
         </grid-layout>
         <base-layout
           v-else
@@ -18,7 +22,11 @@
           :fieldKey="fieldKey"
           v-slot="{ field }"
         >
-          <dynamic-element :field="field" :model="model"></dynamic-element>
+          <dynamic-element
+            :field="field"
+            :model="model"
+            :readonly="readonly"
+          ></dynamic-element>
         </base-layout>
       </groups-layout>
       <!-- /groups-layout -->
@@ -31,7 +39,11 @@
         v-slot="{ field }"
         :layout="layout"
       >
-        <dynamic-element :field="field" :model="model"></dynamic-element>
+        <dynamic-element
+          :field="field"
+          :model="model"
+          :readonly="readonly"
+        ></dynamic-element>
       </grid-layout>
       <!-- /grid-layout -->
 
@@ -42,11 +54,19 @@
         :fieldKey="fieldKey"
         v-slot="{ field }"
       >
-        <dynamic-element :field="field" :model="model"></dynamic-element>
+        <dynamic-element
+          :field="field"
+          :model="model"
+          :readonly="readonly"
+        ></dynamic-element>
       </base-layout>
       <!-- /base-layout -->
 
-      <el-form-item v-if="fields.length && submitter" v-bind="submitter.props">
+      <el-form-item
+        class="pro-form__actions"
+        v-if="fields.length && submitter"
+        v-bind="submitter.props"
+      >
         <el-button
           type="primary"
           v-bind="submitter.submitButtonProps"

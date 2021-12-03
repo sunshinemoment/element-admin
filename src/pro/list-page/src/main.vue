@@ -6,6 +6,7 @@
       @submit="formSubmit"
       @reset="formReset"
     ></pro-form>
+    <slot name="addon"></slot>
     <pro-table
       ref="tableRef"
       :init-load="false"

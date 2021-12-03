@@ -39,5 +39,9 @@ yarn dev
 ## 参考文档
 
 - [Vue.Draggable](https://sortablejs.github.io/Vue.Draggable/#/simple)
-- [vue-draggable配置从入门到精通](https://segmentfault.com/a/1190000021376720)
+- [vue-draggable 配置从入门到精通](https://segmentfault.com/a/1190000021376720)
 - [sortablejs 配置项](http://www.sortablejs.com/options.html)
+
+## 注意
+
+- [关于 DEPRECATION WARNING: Using / for division is deprecated and will be removed in Dart Sass 2.0.0](https://blog.csdn.net/sinat_39956944/article/details/119280680)

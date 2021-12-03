@@ -1,62 +1,75 @@
+const placeholder = '请输入'
+
 const presetElements = [
   {
     type: 'input',
-    element: 'el-input'
+    element: 'el-input',
+    attrs: {
+      placeholder
+    }
   },
   {
     type: 'input-disabled',
     element: 'el-input',
     attrs: {
-      disabled: true
+      disabled: true,
+      placeholder
     }
   },
   {
     type: 'input-clearable',
     element: 'el-input',
     attrs: {
-      clearable: true
+      clearable: true,
+      placeholder
     }
   },
   {
     type: 'password',
     element: 'el-input',
     attrs: {
-      showPassword: true
+      showPassword: true,
+      placeholder
     }
   },
   {
     type: 'textarea',
     element: 'el-input',
     attrs: {
-      type: 'textarea'
+      type: 'textarea',
+      placeholder
     }
   },
   {
     type: 'textarea-autosize',
     element: 'el-input',
     attrs: {
-      autosize: true
+      autosize: true,
+      placeholder
     }
   },
   {
     type: 'input-mini',
     element: 'el-input',
     attrs: {
-      size: 'mini'
+      size: 'mini',
+      placeholder
     }
   },
   {
     type: 'input-small',
     element: 'el-input',
     attrs: {
-      size: 'small'
+      size: 'small',
+      placeholder
     }
   },
   {
     type: 'input-large',
     element: 'el-input',
     attrs: {
-      size: 'large'
+      size: 'large',
+      placeholder
     }
   },
   {

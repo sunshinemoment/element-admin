@@ -31,6 +31,11 @@ const props = {
       lg: 8,
       xl: 6
     })
+  },
+  // 表单只读
+  readonly: {
+    type: Boolean,
+    default: false
   }
 }
 

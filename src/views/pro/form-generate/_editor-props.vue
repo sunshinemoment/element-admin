@@ -65,7 +65,7 @@ export default {
 ._editor-props {
   padding: 20px 10px;
 }
-/deep/ .pro-form__groups-layout__group-title {
+::v-deep .pro-form__groups-layout__group-title {
   font-size: 14px;
 }
 </style>

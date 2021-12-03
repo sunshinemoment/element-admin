@@ -16,7 +16,10 @@ const props = {
   // [{ element: '', text, ...rest }]
   children: Array,
   childrenElement: String,
-  normalizechildrenElement: Function
+  normalizechildrenElement: Function,
+  // 表单只读
+  readonly: Boolean
+
 }
 
 export const propsKeys = Object.keys(props)
