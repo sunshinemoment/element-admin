@@ -1,6 +1,6 @@
 <template>
   <div class="page-advanced-form">
-    <el-steps :active="active" finish-status="success">
+    <el-steps :active="active" finish-status="success" simple>
       <el-step title="步骤 1"></el-step>
       <el-step title="步骤 2"></el-step>
       <el-step title="步骤 3"></el-step>
