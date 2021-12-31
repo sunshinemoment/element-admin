@@ -1,5 +1,5 @@
 <template>
-  <div class="lit-page">
+  <div class="list-page">
     <pro-form
       ref="formRef"
       v-bind="newProFormProps"

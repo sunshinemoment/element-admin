@@ -3,7 +3,7 @@
     <div :class="['layout-basic', screen]">
       <el-container>
         <el-aside
-          :width="menuCollapse ? '64px' : '256px'"
+          :width="menuCollapse ? '64px' : '200px'"
           class="layout-basic__sider"
         >
           <sider-view></sider-view>
@@ -20,7 +20,7 @@
         </el-main>
       </el-container>
       <el-drawer
-        size="256px"
+        size="200px"
         direction="ltr"
         :visible.sync="drawerVisible"
         :with-header="false"

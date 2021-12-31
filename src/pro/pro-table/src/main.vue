@@ -28,7 +28,7 @@
           <!-- /自定义渲染render方法  -->
 
           <!-- 数据中也可单独返回一个函数 -->
-          <template v-if="typeof scope.row[column.prop] === 'function'">
+          <template v-else-if="typeof scope.row[column.prop] === 'function'">
             <custom-column-content
               :render="scope.row[column.prop]"
               :column="column"

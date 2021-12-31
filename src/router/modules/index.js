@@ -1,4 +1,5 @@
-const layouts = ['pro', 'directives', 'charts', 'media', 'demo']
+const layouts = ['form', 'pro'] //  'directives', 'charts', 'media', 'demo'
+const layoutKeys = layouts.map((item) => `./${item}.js`)
 
 const files = require.context('.', false, /\.js$/)
 const filesKeys = files.keys()
@@ -10,7 +11,7 @@ const layoutsFilesKeys = filesKeys.sort((a, b) => {
 
 const modules = layoutsFilesKeys.reduce((pre, next) => {
   if (next === './index.js') return pre
-  if (process.env.NODE_ENV === 'production' && next === './demo.js') {
+  if (!layoutKeys.includes(next)) {
     return pre
   }
   if (!files(next).default) return pre

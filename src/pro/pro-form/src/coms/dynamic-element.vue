@@ -37,7 +37,7 @@ export default {
       }
 
       if ((this.readonly && fieldReadonly === undefined) || fieldReadonly) {
-        return this.model[prop]
+        return normalizeReturnRender(h, this.model[prop])
       }
 
       return (
