@@ -126,8 +126,8 @@ export default {
     }
   },
   methods: {
-    submit() {
-      //
+    submit(data) {
+      console.log(data)
     }
   }
 }

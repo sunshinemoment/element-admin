@@ -1,4 +1,4 @@
-const layouts = ['form', 'pro'] //  'directives', 'charts', 'media', 'demo'
+const layouts = ['form', 'list', 'pro'] //  'directives', 'charts', 'media', 'demo'
 const layoutKeys = layouts.map((item) => `./${item}.js`)
 
 const files = require.context('.', false, /\.js$/)
