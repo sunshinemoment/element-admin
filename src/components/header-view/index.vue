@@ -22,12 +22,26 @@
         </template>
       </el-breadcrumb>
     </div>
-    <!-- <div class="com-header-view__right">user</div> -->
+    <div class="com-header-view__right">
+      <el-popover placement="top-start" width="200" trigger="hover">
+        <el-button
+          type="text"
+          style="width: 100%; text-align: center"
+          size="small"
+          @click="logout"
+        >
+          退出登录
+        </el-button>
+        <p class="user-name" slot="reference">user</p>
+      </el-popover>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import { localStore } from '@/utils/store'
+
 export default {
   computed: {
     ...mapState({
@@ -54,6 +68,10 @@ export default {
   methods: {
     menuCollapseToggle() {
       this.$store.commit('menuCollapseUpdate', !this.menuCollapse)
+    },
+    logout() {
+      localStore.clearAll()
+      location.replace(`/user/login`)
     }
   }
 }
@@ -73,5 +91,10 @@ export default {
 .com-header-view__triggle {
   cursor: pointer;
   margin-right: 10px;
+}
+.com-header-view__right {
+  .user-name {
+    cursor: pointer;
+  }
 }
 </style>
