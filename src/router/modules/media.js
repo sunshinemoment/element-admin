@@ -1,20 +1,21 @@
 import RouterHolder from '@/components/router-holder'
+import * as ConstantRouter from '@/constant/router'
 
 const route = {
   path: 'media',
-  name: 'media',
+  name: ConstantRouter.MEDIA,
   meta: {
     name: '媒体页',
     icon: 'el-icon-folder-opened'
   },
   component: RouterHolder,
-  redirect: '/media/device',
+  redirect: ConstantRouter.MEDIA_DEVICE,
   children: [
     {
       path: 'device',
-      name: 'media-device',
+      name: ConstantRouter.MEDIA_DEVICE,
       component: () =>
-        import(/* webpackChunkName: "media" */ '@/views/media/device'),
+        import(/* webpackChunkName: "media-device" */ '@/views/media/device'),
       meta: {
         name: '本地设备'
       }

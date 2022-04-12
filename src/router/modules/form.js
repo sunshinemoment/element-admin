@@ -1,18 +1,19 @@
 import RouterHolder from '@/components/router-holder'
+import * as ConstantRouter from '@/constant/router'
 
 const route = {
   path: 'form',
-  name: 'form',
+  name: ConstantRouter.FORM,
   meta: {
     name: '表单页',
     icon: 'el-icon-folder-opened'
   },
   component: RouterHolder,
-  redirect: '/form/base-form',
+  redirect: ConstantRouter.FORM_BASE,
   children: [
     {
       path: 'base-form',
-      name: 'base-form',
+      name: ConstantRouter.FORM_BASE,
       component: () =>
         import(/* webpackChunkName: "base-form" */ '@/views/form/base-form'),
       meta: {
@@ -21,7 +22,7 @@ const route = {
     },
     {
       path: 'step-form',
-      name: 'step-form',
+      name: ConstantRouter.FORM_STEP,
       component: () =>
         import(/* webpackChunkName: "step-form" */ '@/views/form/step-form'),
       meta: {
@@ -30,7 +31,7 @@ const route = {
     },
     {
       path: 'advanced-form',
-      name: 'advanced-form',
+      name: ConstantRouter.FORM_ADVANCED,
       component: () =>
         import(
           /* webpackChunkName: "advanced-form" */ '@/views/form/advanced-form'

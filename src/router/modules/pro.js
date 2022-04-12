@@ -1,46 +1,47 @@
 import RouterHolder from '@/components/router-holder'
+import * as ConstantRouter from '@/constant/router'
 
 const route = {
   path: 'pro',
-  name: 'pro',
+  name: ConstantRouter.PRO,
   meta: {
     name: 'pro页',
     icon: 'el-icon-folder-opened'
   },
   component: RouterHolder,
-  redirect: '/pro/pro-form',
+  redirect: ConstantRouter.PRO_FORM,
   children: [
     {
       path: 'pro-form',
-      name: 'pro-form',
+      name: ConstantRouter.PRO_FORM,
       component: () =>
         import(/* webpackChunkName: "pro" */ '@/views/pro/pro-form'),
       meta: {
-        name: 'pro-form'
+        name: '表单页'
       }
     },
     {
       path: 'pro-table',
-      name: 'pro-table',
+      name: ConstantRouter.PRO_TABLE,
       component: () =>
         import(/* webpackChunkName: "pro" */ '@/views/pro/pro-table'),
       meta: {
-        name: 'pro-table'
+        name: '表格页'
       }
     },
     {
       path: 'list-page',
-      name: 'list-page',
+      name: ConstantRouter.LIST_PAGE,
       component: () =>
         import(/* webpackChunkName: "pro" */ '@/views/pro/list-page'),
       meta: {
-        name: 'list-page'
+        name: '搜索页面'
       }
     },
     {
       path: 'form-generate',
       meta: {
-        name: 'form-generate',
+        name: '表单生成器',
         path: '/form-generate',
         isNewTab: true
       }

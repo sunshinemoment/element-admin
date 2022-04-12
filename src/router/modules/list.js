@@ -1,18 +1,19 @@
 import RouterHolder from '@/components/router-holder'
+import * as ConstantRouter from '@/constant/router'
 
 const route = {
   path: 'list',
-  name: 'list',
+  name: ConstantRouter.LIST,
   meta: {
     name: '列表页',
     icon: 'el-icon-folder-opened'
   },
   component: RouterHolder,
-  redirect: '/list/table-list',
+  redirect: ConstantRouter.LIST_TABLE,
   children: [
     {
       path: 'table-list',
-      name: 'table-list',
+      name: ConstantRouter.LIST_TABLE,
       component: () =>
         import(/* webpackChunkName: "table-list" */ '@/views/list/table-list'),
       meta: {
