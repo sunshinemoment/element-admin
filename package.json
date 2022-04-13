@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "dev": "vue-cli-service serve --mode development",
+    "build": "vue-cli-service build --mode production",
     "deploy": "bash deploy.sh"
   },
   "dependencies": {
+    "axios": "^0.26.1",
     "core-js": "^3.6.5",
     "echarts": "^5.2.1",
     "element-ui": "^2.15.6",

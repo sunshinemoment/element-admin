@@ -7,6 +7,7 @@ import ElementUI from 'element-ui'
 import ProForm from '@/pro/pro-form'
 import ProTable from '@/pro/pro-table'
 import ListPage from '@/pro/list-page'
+import './lib'
 import 'element-ui/lib/theme-chalk/index.css'
 import './global.scss'
 

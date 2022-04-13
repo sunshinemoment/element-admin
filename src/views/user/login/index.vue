@@ -8,9 +8,20 @@
       :submitter="{
         props: {
           style: {
-            marginLeft: '-50px'
+            paddingLeft: '-50px'
           }
-        }
+        },
+        submitButtonProps: {
+          style: {
+            width: '100%'
+          }
+        },
+        resetButtonProps: {
+          style: {
+            display: 'none'
+          }
+        },
+        submitText: '登录'
       }"
       @submit="submit"
     ></pro-form>
@@ -50,9 +61,14 @@ export default {
     }
   },
   methods: {
-    submit(val) {
+    async submit(val) {
+      const [err, res] = await this.$serve.user.login({
+        data: {}
+      })
+      if (err) return
+      console.log(res, 'res')
       console.log(val, '这里提交数据, 提交成功之后, 跳转首页')
-      this.$router.push('/')
+      // this.$router.push('/')
     }
   }
 }
