@@ -41,7 +41,7 @@
   width: 400px;
   margin: 0 auto;
   background: #fff;
-  padding: 40px 20px 10px;
+  padding: 40px 30px 10px;
   border-radius: 4px;
 }
 .layout-user__title {
