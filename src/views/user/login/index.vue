@@ -1,21 +1,19 @@
 <template>
   <div class="page-user-login">
-    <div class="page-user-login__inner">
-      <pro-form
-        labelPosition="right"
-        label-width="50px"
-        :model="model"
-        :fields="fields"
-        :submitter="{
-          props: {
-            style: {
-              marginLeft: '-50px'
-            }
+    <pro-form
+      labelPosition="right"
+      label-width="50px"
+      :model="model"
+      :fields="fields"
+      :submitter="{
+        props: {
+          style: {
+            marginLeft: '-50px'
           }
-        }"
-        @submit="submit"
-      ></pro-form>
-    </div>
+        }
+      }"
+      @submit="submit"
+    ></pro-form>
   </div>
 </template>
 
@@ -63,12 +61,5 @@ export default {
 <style lang="scss" scoped>
 .page-user-login {
   position: relative;
-}
-.page-user-login__inner {
-  width: 400px;
-  margin: 0 auto;
-  background: #fff;
-  padding: 40px 20px 10px;
-  border-radius: 4px;
 }
 </style>
