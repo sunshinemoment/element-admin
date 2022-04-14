@@ -1,11 +1,12 @@
 import RouterHolder from '@/components/router-holder'
 import * as ConstantRouter from '@/constant/router'
+import * as ConstantLabel from '@/constant/label'
 
 const route = {
   path: 'charts',
   name: ConstantRouter.CHARTS,
   meta: {
-    name: '图表页',
+    name: ConstantLabel.CHARTS,
     icon: 'el-icon-folder-opened'
   },
   component: RouterHolder,
@@ -19,7 +20,7 @@ const route = {
           /* webpackChunkName: "charts-echarts" */ '@/views/charts/echarts'
         ),
       meta: {
-        name: 'echarts'
+        name: ConstantLabel.CHARTS_ECHARTS,
       }
     }
   ]

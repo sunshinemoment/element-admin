@@ -1,11 +1,12 @@
 import RouterHolder from '@/components/router-holder'
 import * as ConstantRouter from '@/constant/router'
+import * as ConstantLabel from '@/constant/label'
 
 const route = {
   path: 'media',
   name: ConstantRouter.MEDIA,
   meta: {
-    name: '媒体页',
+    name: ConstantLabel.MEDIA,
     icon: 'el-icon-folder-opened'
   },
   component: RouterHolder,
@@ -17,7 +18,7 @@ const route = {
       component: () =>
         import(/* webpackChunkName: "media-device" */ '@/views/media/device'),
       meta: {
-        name: '本地设备'
+        name: ConstantLabel.MEDIA_DEVICE,
       }
     }
   ]

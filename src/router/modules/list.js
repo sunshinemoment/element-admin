@@ -1,11 +1,12 @@
 import RouterHolder from '@/components/router-holder'
 import * as ConstantRouter from '@/constant/router'
+import * as ConstantLabel from '@/constant/label'
 
 const route = {
   path: 'list',
   name: ConstantRouter.LIST,
   meta: {
-    name: '列表页',
+    name: ConstantLabel.LIST,
     icon: 'el-icon-folder-opened'
   },
   component: RouterHolder,
@@ -17,7 +18,7 @@ const route = {
       component: () =>
         import(/* webpackChunkName: "table-list" */ '@/views/list/table-list'),
       meta: {
-        name: '查询列表'
+        name: ConstantLabel.LIST_TABLE,
       }
     }
   ]

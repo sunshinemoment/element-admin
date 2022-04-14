@@ -1,11 +1,12 @@
 import RouterHolder from '@/components/router-holder'
 import * as ConstantRouter from '@/constant/router'
+import * as ConstantLabel from '@/constant/label'
 
 const route = {
   path: 'pro',
   name: ConstantRouter.PRO,
   meta: {
-    name: 'pro页',
+    name: ConstantLabel.PRO,
     icon: 'el-icon-folder-opened'
   },
   component: RouterHolder,
@@ -17,7 +18,7 @@ const route = {
       component: () =>
         import(/* webpackChunkName: "pro" */ '@/views/pro/pro-form'),
       meta: {
-        name: '表单页'
+        name: ConstantLabel.PRO_FORM,
       }
     },
     {
@@ -26,7 +27,7 @@ const route = {
       component: () =>
         import(/* webpackChunkName: "pro" */ '@/views/pro/pro-table'),
       meta: {
-        name: '表格页'
+        name: ConstantLabel.PRO_TABLE,
       }
     },
     {
@@ -35,13 +36,13 @@ const route = {
       component: () =>
         import(/* webpackChunkName: "pro" */ '@/views/pro/list-page'),
       meta: {
-        name: '搜索页面'
+        name: ConstantLabel.LIST_PAGE,
       }
     },
     {
       path: 'form-generate',
       meta: {
-        name: '表单生成器',
+        name: ConstantLabel.FORM_GENERATE,
         path: '/form-generate',
         isNewTab: true
       }

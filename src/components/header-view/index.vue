@@ -23,17 +23,53 @@
       </el-breadcrumb>
     </div>
     <div class="com-header-view__right">
-      <el-popover placement="top-start" width="200" trigger="hover">
-        <el-button
-          type="text"
-          style="width: 100%; text-align: center"
-          size="small"
-          @click="logout"
-        >
-          退出登录
-        </el-button>
-        <p class="user-name" slot="reference">user</p>
-      </el-popover>
+      <el-dropdown>
+        <span class="el-dropdown-link">
+          {{ $t('global.change-language') }}
+          <i class="el-icon-arrow-down el-icon--right"></i>
+        </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item v-if="lang !== 'cn'">
+            <el-button
+              type="text"
+              style="width: 100%; text-align: center"
+              size="small"
+              @click="changeLang('cn')"
+            >
+              {{ $t('global.language-cn') }}
+            </el-button>
+          </el-dropdown-item>
+          <el-dropdown-item v-if="lang !== 'en'">
+            <el-button
+              type="text"
+              style="width: 100%; text-align: center"
+              size="small"
+              @click="changeLang('en')"
+            >
+              {{ $t('global.language-en') }}
+            </el-button>
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+      <el-divider direction="vertical"></el-divider>
+      <el-dropdown>
+        <span class="el-dropdown-link">
+          user
+          <i class="el-icon-arrow-down el-icon--right"></i>
+        </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item>
+            <el-button
+              type="text"
+              style="width: 100%; text-align: center"
+              size="small"
+              @click="logout"
+            >
+              退出登录
+            </el-button>
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
     </div>
   </div>
 </template>
@@ -43,6 +79,11 @@ import { mapState } from 'vuex'
 import { localStore } from '@/utils/store'
 
 export default {
+  data() {
+    return {
+      lang: localStore.get('lang') || 'cn' // 语言标识
+    }
+  },
   computed: {
     ...mapState({
       menuCollapse(state) {
@@ -68,6 +109,10 @@ export default {
   methods: {
     menuCollapseToggle() {
       this.$store.commit('menuCollapseUpdate', !this.menuCollapse)
+    },
+    changeLang(lang) {
+      localStore.set('lang', lang)
+      location.reload()
     },
     logout() {
       localStore.clearAll()

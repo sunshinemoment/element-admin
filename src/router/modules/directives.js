@@ -1,11 +1,12 @@
 import RouterHolder from '@/components/router-holder'
 import * as ConstantRouter from '@/constant/router'
+import * as ConstantLabel from '@/constant/label'
 
 const route = {
   path: 'directives',
   name: ConstantRouter.DIRECTIVES,
   meta: {
-    name: 'Vue指令页',
+    name: ConstantLabel.DIRECTIVES,
     icon: 'el-icon-folder-opened'
   },
   component: RouterHolder,
@@ -19,7 +20,7 @@ const route = {
           /* webpackChunkName: "directives-copy" */ '@/views/directives/copy'
         ),
       meta: {
-        name: '复制功能'
+        name: ConstantLabel.DIRECTIVES_COPY,
       }
     }
   ]

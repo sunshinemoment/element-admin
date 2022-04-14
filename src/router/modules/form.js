@@ -1,11 +1,12 @@
 import RouterHolder from '@/components/router-holder'
 import * as ConstantRouter from '@/constant/router'
+import * as ConstantLabel from '@/constant/label'
 
 const route = {
   path: 'form',
   name: ConstantRouter.FORM,
   meta: {
-    name: '表单页',
+    name: ConstantLabel.FORM,
     icon: 'el-icon-folder-opened'
   },
   component: RouterHolder,
@@ -17,7 +18,7 @@ const route = {
       component: () =>
         import(/* webpackChunkName: "base-form" */ '@/views/form/base-form'),
       meta: {
-        name: '基础表单'
+        name: ConstantLabel.FORM_BASE
       }
     },
     {
@@ -26,7 +27,7 @@ const route = {
       component: () =>
         import(/* webpackChunkName: "step-form" */ '@/views/form/step-form'),
       meta: {
-        name: '分布表单'
+        name: ConstantLabel.FORM_STEP
       }
     },
     {
@@ -37,7 +38,7 @@ const route = {
           /* webpackChunkName: "advanced-form" */ '@/views/form/advanced-form'
         ),
       meta: {
-        name: '高级表单'
+        name: ConstantLabel.FORM_ADVANCED
       }
     }
   ]
