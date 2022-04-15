@@ -6,22 +6,22 @@ export default {
       type: Array,
       default: () => []
     },
-    active: String
+    active: String,
+    menuClick: Function
   },
   functional: true,
   render(_, { props }) {
-    const { data } = props
-    return data.map(({ meta, children }) => {
-      const title = meta.name || meta.realPath
-
-      if (!meta.hideChildrenInMenu && children?.length) {
+    const { data, menuClick } = props
+    return data.map((item) => {
+      const { key, name, icon, hideChildrenInMenu, children } = item
+      if (!hideChildrenInMenu && children?.length) {
         return (
-          <el-submenu key={meta.realPath} index={meta.realPath}>
+          <el-submenu key={key} index={key}>
             <template slot="title">
-              {meta.icon ? <i class={meta.icon}></i> : ''}
-              <span slot="title">{title}</span>
+              {icon ? <i class={icon}></i> : ''}
+              <span slot="title">{name}</span>
             </template>
-            <tree-menu data={children}></tree-menu>
+            <tree-menu data={children} menu-click={menuClick}></tree-menu>
           </el-submenu>
         )
       }
@@ -29,11 +29,12 @@ export default {
       return (
         <el-menu-item
           class="menu-item"
-          key={meta.realPath}
-          index={meta.realPath}
+          key={key}
+          index={key}
+          onClick={() => menuClick(item)}
         >
-          {meta.icon ? <i class={meta.icon}></i> : ''}
-          <span slot="title">{title}</span>
+          {icon ? <i class={icon}></i> : ''}
+          <span slot="title">{name}</span>
         </el-menu-item>
       )
     })

@@ -10,7 +10,7 @@ const route = {
     icon: 'el-icon-folder-opened'
   },
   component: RouterHolder,
-  redirect: ConstantRouter.FORM_BASE,
+  redirect: { name: ConstantRouter.FORM_BASE },
   children: [
     {
       path: 'base-form',

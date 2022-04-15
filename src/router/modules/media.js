@@ -10,7 +10,7 @@ const route = {
     icon: 'el-icon-folder-opened'
   },
   component: RouterHolder,
-  redirect: ConstantRouter.MEDIA_DEVICE,
+  redirect: { name: ConstantRouter.MEDIA_DEVICE },
   children: [
     {
       path: 'device',

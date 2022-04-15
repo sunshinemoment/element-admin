@@ -10,7 +10,7 @@ const route = {
     icon: 'el-icon-folder-opened'
   },
   component: RouterHolder,
-  redirect: ConstantRouter.LIST_TABLE,
+  redirect: { name: ConstantRouter.LIST_TABLE },
   children: [
     {
       path: 'table-list',
@@ -18,7 +18,7 @@ const route = {
       component: () =>
         import(/* webpackChunkName: "table-list" */ '@/views/list/table-list'),
       meta: {
-        name: ConstantLabel.LIST_TABLE,
+        name: ConstantLabel.LIST_TABLE
       }
     }
   ]

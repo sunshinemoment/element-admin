@@ -9,13 +9,12 @@
       </p>
     </div>
     <el-menu
-      router
       :default-active="menuActive"
       :collapse="screen['screen-xs'] ? false : menuCollapse"
       :collapse-transition="false"
       class="com-sider-view__menu"
     >
-      <tree-menu :data="menulist"></tree-menu>
+      <tree-menu :data="menu" :menu-click="menuClick"></tree-menu>
     </el-menu>
   </div>
 </template>
@@ -23,7 +22,7 @@
 <script>
 import { mapState } from 'vuex'
 import TreeMenu from '@/components/tree-menu'
-import modules from '@/router/modules'
+import menu, { menuMap } from '@/config/menu'
 
 export default {
   components: {
@@ -50,17 +49,32 @@ export default {
        * 在子菜单隐藏或者菜单隐藏的时候需要筛选菜单匹配
        */
       const menuMatched = matched.filter((menu) => {
-        if (menu.parent?.meta.hideChildrenInMenu || menu.meta.hide) {
+        if (
+          menu.parent &&
+          menu.parent.name &&
+          menuMap[menu.parent.name]?.hideChildrenInMenu
+        ) {
+          return false
+        }
+        if (menuMap[menu.name]?.hide) {
           return false
         }
         return true
       })
-      return menuMatched[menuMatched.length - 1].meta.realPath
+      return menuMatched[menuMatched.length - 1].name
     }
   },
   data() {
     return {
-      menulist: modules
+      menu
+    }
+  },
+  methods: {
+    menuClick(menuItem) {
+      this.$router.push({
+        name: menuItem.key
+      })
+      console.log(menuItem)
     }
   }
 }

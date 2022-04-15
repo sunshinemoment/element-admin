@@ -10,7 +10,7 @@ const route = {
     icon: 'el-icon-folder-opened'
   },
   component: RouterHolder,
-  redirect: ConstantRouter.PRO_FORM,
+  redirect: { name: ConstantRouter.PRO_FORM },
   children: [
     {
       path: 'pro-form',
@@ -18,7 +18,7 @@ const route = {
       component: () =>
         import(/* webpackChunkName: "pro" */ '@/views/pro/pro-form'),
       meta: {
-        name: ConstantLabel.PRO_FORM,
+        name: ConstantLabel.PRO_FORM
       }
     },
     {
@@ -27,7 +27,7 @@ const route = {
       component: () =>
         import(/* webpackChunkName: "pro" */ '@/views/pro/pro-table'),
       meta: {
-        name: ConstantLabel.PRO_TABLE,
+        name: ConstantLabel.PRO_TABLE
       }
     },
     {
@@ -36,7 +36,7 @@ const route = {
       component: () =>
         import(/* webpackChunkName: "pro" */ '@/views/pro/list-page'),
       meta: {
-        name: ConstantLabel.LIST_PAGE,
+        name: ConstantLabel.LIST_PAGE
       }
     },
     {

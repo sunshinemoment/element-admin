@@ -5,7 +5,7 @@ const route = {
   path: '/user',
   name: ConstantRouter.USER,
   component: User,
-  redirect: ConstantRouter.USER_LOGIN,
+  redirect: { name: ConstantRouter.USER_LOGIN },
   children: [
     {
       path: 'login',

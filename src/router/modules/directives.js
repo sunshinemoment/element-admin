@@ -10,7 +10,7 @@ const route = {
     icon: 'el-icon-folder-opened'
   },
   component: RouterHolder,
-  redirect: ConstantRouter.DIRECTIVES_COPY,
+  redirect: { name: ConstantRouter.DIRECTIVES_COPY },
   children: [
     {
       path: 'copy',
@@ -20,7 +20,7 @@ const route = {
           /* webpackChunkName: "directives-copy" */ '@/views/directives/copy'
         ),
       meta: {
-        name: ConstantLabel.DIRECTIVES_COPY,
+        name: ConstantLabel.DIRECTIVES_COPY
       }
     }
   ]

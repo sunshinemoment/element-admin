@@ -19,7 +19,7 @@ export function getValidParam(obj, empty = false) {
   return param
 }
 
-export function randomString (len = 32) {
+export function randomString(len = 32) {
   const chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678'
   const maxPos = chars.length
   let str = ''
@@ -27,4 +27,17 @@ export function randomString (len = 32) {
     str += chars.charAt(Math.floor(Math.random() * maxPos))
   }
   return str
+}
+
+export function treeToMap(tree) {
+  const fn = (tree) => {
+    return tree.reduce((pre, next) => {
+      return {
+        ...pre,
+        [next.key]: next,
+        ...(next.children && next.children.length ? fn(next.children) : null)
+      }
+    }, {})
+  }
+  return fn(tree)
 }

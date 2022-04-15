@@ -10,7 +10,7 @@ const route = {
     icon: 'el-icon-folder-opened'
   },
   component: RouterHolder,
-  redirect: ConstantRouter.CHARTS_ECHARTS,
+  redirect: { name: ConstantRouter.CHARTS_ECHARTS },
   children: [
     {
       path: 'echarts',
@@ -20,7 +20,7 @@ const route = {
           /* webpackChunkName: "charts-echarts" */ '@/views/charts/echarts'
         ),
       meta: {
-        name: ConstantLabel.CHARTS_ECHARTS,
+        name: ConstantLabel.CHARTS_ECHARTS
       }
     }
   ]

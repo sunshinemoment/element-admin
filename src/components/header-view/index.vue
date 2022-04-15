@@ -9,15 +9,15 @@
         <template v-for="item in matchedRoutes">
           <el-breadcrumb-item
             v-if="item.enabled"
-            :key="item.path"
+            :key="item.name"
             :to="{
-              path: item.path
+              name: item.name
             }"
           >
-            {{ item.name }}
+            {{ item.label }}
           </el-breadcrumb-item>
-          <el-breadcrumb-item v-else :key="item.path">
-            {{ item.name }}
+          <el-breadcrumb-item v-else :key="item.name">
+            {{ item.label }}
           </el-breadcrumb-item>
         </template>
       </el-breadcrumb>
@@ -77,6 +77,7 @@
 <script>
 import { mapState } from 'vuex'
 import { localStore } from '@/utils/store'
+import { menuMap } from '@/config/menu'
 
 export default {
   data() {
@@ -99,11 +100,14 @@ export default {
       }
       let matched = this.currentRoute.matched.slice(1) || []
       matched = matched.filter((item) => item.name)
-      return matched.map((item, i) => ({
-        name: item.meta.name,
-        path: item.meta.realPath,
-        enabled: item.meta.hideChildrenInMenu && i !== matched.length - 1
-      }))
+      return matched.map((item, i) => {
+        const currentMenu = menuMap[item.name] || {}
+        return {
+          name: currentMenu.key,
+          label: currentMenu.name,
+          enabled: !currentMenu.hideChildrenInMenu && i !== matched.length - 1
+        }
+      })
     }
   },
   methods: {
